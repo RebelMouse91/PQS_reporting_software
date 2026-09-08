@@ -1,1 +1,76 @@
+name: Сборка APK
 
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Забрать код
+        uses: actions/checkout@v4
+
+      - name: Что лежит в репозитории
+        run: |
+          echo "=== файлы в корне ==="
+          ls -la
+
+      - name: Проверить архив
+        run: |
+          if [ ! -f project.zip ]; then
+            echo "ОШИБКА: в корне репозитория нет файла project.zip"
+            echo "Залейте его через Add file - Upload files и запустите сборку заново."
+            exit 1
+          fi
+          echo "project.zip найден, размер:"
+          ls -la project.zip
+
+      - name: Распаковать проект
+        run: |
+          unzip -o project.zip -d .
+          if [ -f index.html ]; then
+            mkdir -p app/src/main/assets
+            cp index.html app/src/main/assets/index.html
+            echo "index.html из корня положен в assets"
+          fi
+          echo "=== структура проекта ==="
+          find . -path ./.git -prune -o -type f -print | sort
+          for f in settings.gradle build.gradle app/build.gradle app/src/main/AndroidManifest.xml app/src/main/assets/index.html; do
+            if [ ! -f "$f" ]; then echo "ОШИБКА: нет файла $f"; exit 1; fi
+          done
+          echo "Все нужные файлы на месте."
+
+      - name: Поставить Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Проверить окружение
+        run: |
+          java -version
+          echo "ANDROID_HOME = $ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" || true
+
+      - name: Поставить Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Собрать APK
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Показать, что собралось
+        if: always()
+        run: |
+          echo "=== APK ==="
+          find . -name '*.apk' -print || echo "APK не найден"
+
+      - name: Выложить APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: kniga-ucheta-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
