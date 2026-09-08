@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1520">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Книга учёта">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<title>Книга учёта</title>
+<style>
+/* ---------- токены ---------- */
+:root{
+  --bg:#eceff4; --panel:#ffffff; --panel2:#f3f6fa; --line:#dde3ec;
+  --tx:#111721; --tx2:#5c6879; --tx3:#8c97a7;
+  --acc:#1e4fd8; --acc-tx:#ffffff; --acc-soft:rgba(30,79,216,.10);
+  --cao:#b06a00; --cao-soft:rgba(176,106,0,.12);
+  --bad:#c33427; --bad-soft:rgba(195,52,39,.10);
+  --shadow:0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.18);
+  --board:#0f1520; --board2:#182231; --board-tx:#eaf0fa;
+  --board-tx2:#7f8da3; --board-line:#243146;
+  --p1:#1e4fd8; --p1s:rgba(30,79,216,.10);
+  --p2:#1f7a4d; --p2s:rgba(31,122,77,.11);
+  --p3:#a85c14; --p3s:rgba(168,92,20,.11);
+  --p4:#6a3fb0; --p4s:rgba(106,63,176,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0d13; --panel:#131923; --panel2:#1a2130; --line:#26303f;
+    --tx:#e8edf5; --tx2:#95a2b5; --tx3:#6e7c90;
+    --acc:#5b86ff; --acc-tx:#0a0d13; --acc-soft:rgba(91,134,255,.14);
+    --cao:#f2b134; --cao-soft:rgba(242,177,52,.14);
+    --bad:#ff6f62; --bad-soft:rgba(255,111,98,.13);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+    --board:#0d1622; --board2:#16202f;
+    --p1:#7ba0ff; --p1s:rgba(123,160,255,.15);
+    --p2:#4fce93; --p2s:rgba(79,206,147,.14);
+    --p3:#f0a45a; --p3s:rgba(240,164,90,.14);
+    --p4:#b295f2; --p4s:rgba(178,149,242,.15);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a0d13; --panel:#131923; --panel2:#1a2130; --line:#26303f;
+  --tx:#e8edf5; --tx2:#95a2b5; --tx3:#6e7c90;
+  --acc:#5b86ff; --acc-tx:#0a0d13; --acc-soft:rgba(91,134,255,.14);
+  --cao:#f2b134; --cao-soft:rgba(242,177,52,.14);
+  --bad:#ff6f62; --bad-soft:rgba(255,111,98,.13);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  --board:#0d1622; --board2:#16202f;
+  --p1:#7ba0ff; --p1s:rgba(123,160,255,.15);
+  --p2:#4fce93; --p2s:rgba(79,206,147,.14);
+  --p3:#f0a45a; --p3s:rgba(240,164,90,.14);
+  --p4:#b295f2; --p4s:rgba(178,149,242,.15);
+}
+
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
+html,body{margin:0; overflow-x:hidden}
+body{
+  background:var(--bg); color:var(--tx);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  padding:env(safe-area-inset-top) 0 0;
+}
+button,summary,.line,input,select{touch-action:manipulation}
+.mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.wrap{max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:14px;
+  padding:16px max(14px,env(safe-area-inset-left)) calc(40px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-right))}
+
+/* ---------- шапка ---------- */
+.top{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
+.brand{display:flex; align-items:center; gap:10px}
+.mark{width:34px; height:34px; border-radius:9px; background:var(--acc); color:var(--acc-tx);
+  display:grid; place-items:center; font-weight:800; font-size:15px; letter-spacing:-.5px; flex:none}
+h1{font-size:17px; margin:0; font-weight:700; letter-spacing:-.2px}
+.brand .cap{font-size:11.5px; color:var(--tx3); letter-spacing:.3px; line-height:1.35}
+@media (max-width:359px){ .brand .cap{display:none} }
+.iconbtn{width:42px; height:42px; padding:0; display:grid; place-items:center; font-size:17px; flex:none;
+  background:var(--panel); border:1px solid var(--line); border-radius:11px; color:var(--tx2); cursor:pointer}
+
+/* ---------- табло ---------- */
+.board{
+  background:linear-gradient(160deg,var(--board2),var(--board));
+  border-radius:16px; padding:15px clamp(13px,4vw,18px) 13px; color:var(--board-tx);
+  display:grid; grid-template-columns:1fr 1px 1fr; gap:clamp(10px,4vw,16px); align-items:center;
+  box-shadow:var(--shadow); position:relative; overflow:hidden;
+}
+.board::after{content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);
+  pointer-events:none}
+.board .sep{background:var(--board-line); height:44px; align-self:center}
+.b-l{font-size:10.5px; letter-spacing:1.4px; text-transform:uppercase; color:var(--board-tx2); margin-bottom:5px}
+.b-v{font-size:clamp(23px,7.4vw,32px); font-weight:700; line-height:1.05; letter-spacing:-.5px;
+  font-variant-numeric:tabular-nums; overflow-wrap:anywhere}
+.b-u{font-size:10.5px; color:var(--board-tx2); margin-top:5px; line-height:1.35}
+.b-v.neg{color:#ff8a7d}
+
+/* ---------- карточки ---------- */
+.card{background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow)}
+.pad{padding:14px}
+.eyebrow{font-size:10.5px; letter-spacing:1.3px; text-transform:uppercase; color:var(--tx3); font-weight:600}
+
+/* ---------- линии-локации ---------- */
+.lines{display:flex; flex-wrap:wrap; gap:7px; margin:10px 0 12px}
+.line{display:flex; align-items:center; gap:8px; padding:9px 11px 9px 9px; border-radius:10px; min-height:44px;
+  background:var(--panel2); border:1px solid var(--line); cursor:pointer; font:inherit; color:var(--tx)}
+.line:active{transform:scale(.97)}
+.line .dot{width:9px; height:9px; border-radius:50%; flex:none}
+.line .cd{font-weight:700; font-size:15px}
+.line .nm{font-size:12px; color:var(--tx2); max-width:34vw; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.tag{font-size:9.5px; font-weight:700; letter-spacing:.7px; padding:2px 5px; border-radius:4px;
+  background:var(--cao-soft); color:var(--cao)}
+.lines .none{font-size:13px; color:var(--tx3); padding:6px 2px}
+
+/* ---------- ввод ---------- */
+/* 16px на всех полях: иначе iOS зумит страницу при фокусе */
+textarea,input,select{font:inherit; font-size:16px; color:var(--tx); background:var(--panel2);
+  border:1px solid var(--line); border-radius:11px; padding:11px 12px; max-width:100%}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none; margin:0}
+textarea{width:100%; min-height:104px; resize:vertical; display:block;
+  font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace; font-size:16px; line-height:1.6}
+textarea::placeholder{color:var(--tx3)}
+:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+textarea:focus,input:focus,select:focus{outline:2px solid var(--acc); outline-offset:-1px; border-color:transparent}
+
+button{font:inherit; color:var(--tx); background:var(--panel2); border:1px solid var(--line);
+  border-radius:11px; padding:12px 14px; min-height:46px; cursor:pointer}
+button:active{transform:scale(.98)}
+.bar{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+.bar>*{flex:1 1 96px}
+.go{background:var(--acc); border-color:var(--acc); color:var(--acc-tx); font-weight:650; flex:2 1 130px; min-height:50px}
+.ghost{background:transparent}
+.tiny{padding:9px 11px; font-size:13px; min-height:42px}
+.danger{color:var(--bad)}
+.err{color:var(--bad); background:var(--bad-soft); border-radius:10px; padding:9px 11px;
+  font-size:13.5px; margin-top:10px; white-space:pre-wrap; line-height:1.5}
+.tips{font-size:12.5px; color:var(--tx3); margin-top:9px; line-height:1.7}
+.tips b{color:var(--tx2); font-weight:600}
+.linkbtn{background:none; border:0; padding:0; min-height:0; font:inherit; color:var(--acc);
+  text-decoration:underline; text-underline-offset:2px; cursor:pointer}
+
+/* ---------- чек ---------- */
+.receipt{position:relative; background:var(--panel); border:1px solid var(--line); border-radius:4px;
+  box-shadow:var(--shadow); padding:16px 16px 14px}
+.receipt::before,.receipt::after{content:""; position:absolute; left:0; right:0; height:6px;
+  background:radial-gradient(circle at 4px 0, transparent 4px, var(--panel) 4.5px) 0 0/12px 6px repeat-x}
+.receipt::before{top:-1px; transform:scaleY(-1)}
+.receipt::after{bottom:-1px}
+.receipt .rh{display:flex; justify-content:space-between; align-items:baseline;
+  border-bottom:1px dashed var(--line); padding-bottom:9px; margin-bottom:11px}
+.receipt pre{margin:0; white-space:pre-wrap; overflow-wrap:anywhere; font-size:15px; line-height:1.65}
+#repWrap{scroll-margin-top:12px}
+
+/* ---------- раскрывашки ---------- */
+details.card>summary{list-style:none; cursor:pointer; padding:15px 14px; min-height:48px;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  font-size:10.5px; letter-spacing:1.3px; text-transform:uppercase; color:var(--tx3); font-weight:600}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary .chev{font-size:11px; transition:transform .18s}
+details.card[open]>summary .chev{transform:rotate(180deg)}
+details.card>summary .cnt{margin-left:auto; font-size:11px; letter-spacing:0; text-transform:none; color:var(--tx3)}
+.body{padding:0 14px 14px}
+
+/* строки редактора локаций: на узком экране — в два ряда */
+.lr{display:grid; gap:6px; align-items:center; margin-bottom:8px;
+  grid-template-columns:40px 62px minmax(0,1fr) auto 44px}
+.lr .sw{width:40px; height:40px; padding:0; border:1px solid var(--line); border-radius:10px;
+  cursor:pointer; min-height:0; position:relative; background-clip:padding-box}
+.lr input{padding:10px 8px; min-width:0; width:100%}
+.lr .code{text-align:center; font-weight:700; text-transform:uppercase}
+.lr .cao{padding:0 11px; height:40px; min-height:0; font-size:11.5px; font-weight:700;
+  letter-spacing:.5px; border-radius:9px; color:var(--tx3)}
+.lr .cao.on{background:var(--cao-soft); color:var(--cao); border-color:transparent}
+.lr .rm{padding:0; width:44px; height:40px; min-height:0; color:var(--tx3); font-size:15px}
+.addrow{display:grid; grid-template-columns:62px minmax(0,1fr) auto; gap:6px; margin-top:12px}
+.addrow input{padding:10px 8px; min-width:0; width:100%}
+@media (max-width:430px){
+  .lr{grid-template-columns:40px 62px minmax(0,1fr); grid-template-areas:"sw code name" ". cao rm"; row-gap:5px;
+    padding-bottom:9px; border-bottom:1px solid var(--line)}
+  .lr .sw{grid-area:sw} .lr .code{grid-area:code} .lr input:not(.code){grid-area:name}
+  .lr .cao{grid-area:cao; justify-self:stretch} .lr .rm{grid-area:rm; justify-self:start; width:64px}
+  .addrow{grid-template-columns:62px minmax(0,1fr); grid-template-areas:"code name" "btn btn"; row-gap:7px}
+  .addrow .code{grid-area:code} .addrow input:not(.code){grid-area:name} .addrow button{grid-area:btn}
+}
+
+/* тарифы */
+table.tar{width:100%; border-collapse:collapse; table-layout:fixed}
+table.tar th{font-size:10.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--tx3);
+  font-weight:600; padding:0 3px 7px; text-align:center}
+table.tar td{padding:0 3px 7px}
+table.tar td.n,table.tar th:first-child{width:32px}
+table.tar td.n{text-align:center; color:var(--tx3); font-size:14px; font-variant-numeric:tabular-nums}
+table.tar input{width:100%; text-align:center; padding:10px 4px; font-variant-numeric:tabular-nums}
+.defrow{display:flex; align-items:center; flex-wrap:wrap; gap:9px; font-size:13.5px; color:var(--tx2); margin-top:12px}
+.defrow select{padding:9px 10px}
+
+/* ---------- окно справки ---------- */
+.modal{position:fixed; inset:0; z-index:40; display:flex; align-items:flex-end; justify-content:center;
+  background:rgba(8,12,20,.55); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px)}
+.modal[hidden]{display:none}
+.sheet{background:var(--panel); width:100%; max-width:560px; max-height:90dvh; max-height:90vh;
+  border-radius:18px 18px 0 0; display:flex; flex-direction:column; overflow:hidden;
+  box-shadow:0 -8px 40px rgba(0,0,0,.35); animation:up .22s ease-out}
+.sheet:focus{outline:none}
+@keyframes up{from{transform:translateY(22px); opacity:.6} to{transform:none; opacity:1}}
+@media (min-width:620px){
+  .modal{align-items:center}
+  .sheet{border-radius:18px; max-height:86vh}
+}
+.sheet-h{display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:14px 14px 12px; border-bottom:1px solid var(--line); flex:none}
+.sheet-h>div{font-size:16px; font-weight:700}
+.sheet-b{overflow-y:auto; -webkit-overflow-scrolling:touch; padding:4px 16px 16px;
+  font-size:15px; line-height:1.6; color:var(--tx2)}
+.sheet-b h3{font-size:13.5px; color:var(--tx); font-weight:700; margin:20px 0 8px}
+.sheet-b p{margin:8px 0}
+.sheet-b b{color:var(--tx); font-weight:650}
+.sheet-f{padding:12px 14px calc(14px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); flex:none}
+.sheet-f .go{width:100%}
+
+/* разбор команды по частям */
+.formula{display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; margin:12px 0 4px}
+.formula .w{display:flex; flex-direction:column; align-items:center; gap:5px;
+  font-family:ui-monospace,Menlo,Consolas,monospace; font-size:22px; font-weight:700; line-height:1;
+  padding:9px 12px; border-radius:10px; min-width:52px}
+.formula .w em{font-style:normal; font-size:10.5px; font-weight:600; letter-spacing:.4px;
+  text-transform:uppercase; opacity:.85; font-family:inherit}
+.formula .x{font-size:20px; color:var(--tx3); align-self:center; padding-top:6px}
+.p1{background:var(--p1s); color:var(--p1)}
+.p2{background:var(--p2s); color:var(--p2)}
+.p3{background:var(--p3s); color:var(--p3)}
+.p4{background:var(--p4s); color:var(--p4)}
+.calc{background:var(--panel2); border-radius:11px; padding:4px 12px; margin:12px 0 4px}
+.calc div{display:flex; justify-content:space-between; gap:12px; padding:8px 0; font-size:14px}
+.calc div+div{border-top:1px solid var(--line)}
+.calc b{color:var(--tx); font-variant-numeric:tabular-nums}
+.code2{background:var(--panel2); border-left:3px solid var(--acc); border-radius:0 10px 10px 0;
+  padding:11px 13px; margin:10px 0; font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:14px; color:var(--tx); line-height:1.7}
+dl.cmds{margin:10px 0 0; display:grid; grid-template-columns:auto 1fr; gap:0 12px; align-items:baseline}
+dl.cmds dt{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13.5px; color:var(--tx);
+  padding:6px 0; white-space:nowrap}
+dl.cmds dd{margin:0; padding:6px 0; font-size:14px}
+@media (max-width:400px){
+  dl.cmds{grid-template-columns:1fr; gap:0}
+  dl.cmds dt{padding:8px 0 2px}
+  dl.cmds dd{padding:0 0 8px}
+}
+
+/* история */
+.hitem{border:1px solid var(--line); border-radius:12px; background:var(--panel); margin-bottom:7px; overflow:hidden}
+.hitem .hh{display:flex; justify-content:space-between; align-items:center; gap:10px; min-height:46px;
+  padding:11px 13px; cursor:pointer; font-size:13.5px; color:var(--tx2)}
+.hitem .hv{font-variant-numeric:tabular-nums; color:var(--tx)}
+.hitem pre{display:none; margin:0; padding:0 13px 12px; white-space:pre-wrap;
+  font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; line-height:1.55; color:var(--tx)}
+.hitem.open pre{display:block}
+.empty{text-align:center; color:var(--tx3); font-size:13.5px; padding:18px 10px; line-height:1.6}
+
+.toast{position:fixed; left:50%; bottom:calc(22px + env(safe-area-inset-bottom)); transform:translateX(-50%) translateY(18px);
+  max-width:calc(100vw - 32px); text-align:center;
+  background:var(--tx); color:var(--bg); padding:10px 17px; border-radius:22px; font-size:14px;
+  opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:20; box-shadow:var(--shadow)}
+.toast.on{opacity:1; transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <div class="mark">КУ</div>
+      <div>
+        <h1>Книга учёта</h1>
+        <div class="cap">офлайн · данные только на этом устройстве</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:8px">
+      <button class="iconbtn" id="btnHelp" title="Справка" aria-label="Открыть справку">?</button>
+      <button class="iconbtn" id="btnTheme" title="Тема" aria-label="Сменить тему">◐</button>
+    </div>
+  </div>
+
+  <div class="board">
+    <div>
+      <div class="b-l">Баланс</div>
+      <div class="b-v" id="vBal">0</div>
+      <div class="b-u">начисления минус выводы</div>
+    </div>
+    <div class="sep"></div>
+    <div>
+      <div class="b-l">Остаток</div>
+      <div class="b-v" id="vLim">0</div>
+      <div class="b-u">лимит запросов</div>
+    </div>
+  </div>
+
+  <div class="card pad">
+    <div class="eyebrow">Новая запись</div>
+    <div class="lines" id="lines"></div>
+    <textarea id="inp" spellcheck="false" autocapitalize="off" autocomplete="off"
+      placeholder="Н 2х3 М&#10;Т 1х4 Г"></textarea>
+    <div class="bar">
+      <button class="go" id="btnCalc">Рассчитать</button>
+      <button class="ghost" id="btnClear">Стереть</button>
+    </div>
+    <div class="err" id="err" style="display:none"></div>
+    <div class="tips">
+      <b>Н 2х3 М</b> — где, первое число, второе число, тариф. Несколько строк — один отчёт.<br>
+      Все команды и примеры — кнопка <button type="button" class="linkbtn" id="tipHelp">«?» вверху</button>.
+    </div>
+  </div>
+
+  <div id="repWrap" style="display:none">
+    <div class="receipt">
+      <div class="rh">
+        <span class="eyebrow">Отчёт</span>
+        <span class="eyebrow" id="repTime"></span>
+      </div>
+      <pre class="mono" id="rep"></pre>
+    </div>
+    <div class="bar">
+      <button id="btnCopy">Копировать</button>
+      <button class="danger" id="btnUndo">Отменить запись</button>
+    </div>
+  </div>
+
+  <details class="card" id="dLoc">
+    <summary><span>Локации</span><span class="cnt" id="locCnt"></span><span class="chev">▾</span></summary>
+    <div class="body">
+      <div id="locList"></div>
+      <div class="addrow">
+        <input class="code" id="newC" maxlength="4" placeholder="Ст" aria-label="Код">
+        <input id="newN" placeholder="Строгино" aria-label="Название">
+        <button class="tiny" id="btnAddLoc">Добавить</button>
+      </div>
+      <div class="tips" style="margin-top:11px">
+        Код — то, что пишешь в команде, можно из нескольких букв. Кнопка <b>ЦАО</b> помечает локацию:
+        у таких к множителю прибавляется 200.
+      </div>
+    </div>
+  </details>
+
+  <details class="card" id="dTar">
+    <summary><span>Тарифы</span><span class="cnt" id="tarCnt"></span><span class="chev">▾</span></summary>
+    <div class="body">
+      <table class="tar">
+        <thead><tr><th>№</th><th>М</th><th>Г</th></tr></thead>
+        <tbody id="tarBody"></tbody>
+      </table>
+      <div class="bar" style="margin-top:4px">
+        <button class="tiny" style="flex:1" id="btnTarAdd">Добавить строку</button>
+        <button class="tiny" style="flex:1" id="btnTarDel">Убрать</button>
+        <button class="tiny" style="flex:1" id="btnTarReset">Сброс</button>
+      </div>
+      <div class="defrow">
+        <span>Буква не указана — считать как</span>
+        <select id="defSel"><option value="М">М</option><option value="Г">Г</option></select>
+      </div>
+      <div class="tips" style="margin-top:11px">
+        Слева число1, дальше множитель для буквы. Строка № 6 и следующие добавляются кнопкой.
+      </div>
+    </div>
+  </details>
+
+  <details class="card" id="dHist">
+    <summary><span>История</span><span class="cnt" id="histCnt"></span><span class="chev">▾</span></summary>
+    <div class="body">
+      <div id="hist"></div>
+      <div class="bar">
+        <button class="tiny" style="flex:1" id="btnCsv">Экспорт CSV</button>
+        <button class="tiny danger" style="flex:1" id="btnWipe">Очистить историю</button>
+      </div>
+    </div>
+  </details>
+
+</div>
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1" id="mSheet">
+    <div class="sheet-h">
+      <div id="mTitle">Как пользоваться</div>
+      <button class="iconbtn" id="mClose" aria-label="Закрыть">✕</button>
+    </div>
+
+    <div class="sheet-b">
+      <h3>Одна запись</h3>
+      <div class="formula">
+        <span class="w p1">Н<em>где</em></span>
+        <span class="w p2">2<em>первое</em></span>
+        <span class="x">х</span>
+        <span class="w p3">3<em>второе</em></span>
+        <span class="w p4">М<em>тариф</em></span>
+      </div>
+      <p>Первое число выбирает множитель в таблице тарифов. Множитель умножается на второе число — столько придёт на баланс.</p>
+      <div class="calc">
+        <div><span>Множитель</span><b>2200</b></div>
+        <div><span>На баланс: 2200 × 3</span><b>+6600</b></div>
+        <div><span>С остатка: 2 × 3</span><b>−6</b></div>
+      </div>
+
+      <h3>Буква в конце</h3>
+      <p><b>М</b> или <b>Г</b> — два набора множителей. Если букву не писать, возьмётся тот набор,
+      что выбран в разделе «Тарифы».</p>
+
+      <h3>ЦАО</h3>
+      <p>Это отметка у локации, а не у отчёта. Нажмите <b>ЦАО</b> в разделе «Локации» — у этой локации
+      множитель станет на 200 больше. В отчёте такие записи идут отдельной группой.</p>
+
+      <h3>Несколько строк</h3>
+      <div class="code2">Н 2х3 М<br>Т 1х4 Г</div>
+      <p>Пишите подряд — получится один отчёт с общим итогом.</p>
+
+      <h3>Другие команды</h3>
+      <dl class="cmds">
+        <dt>Вывод = 5000</dt><dd>снять с баланса</dd>
+        <dt>МК = 20</dt><dd>добавить к остатку</dd>
+        <dt>Баланс = 60000</dt><dd>поставить баланс</dd>
+        <dt>Остаток = 120</dt><dd>поставить остаток</dd>
+      </dl>
+
+      <h3>Если ошиблись</h3>
+      <p>Кнопка <b>«Отменить запись»</b> под отчётом вернёт баланс и остаток как было,
+      а текст положит обратно в поле.</p>
+
+      <h3>Данные</h3>
+      <p>Хранятся на этом устройстве, интернет не нужен. Чтобы не потерять — иногда делайте
+      <b>«Экспорт CSV»</b> в разделе «История».</p>
+    </div>
+
+    <div class="sheet-f"><button class="go" id="mOk">Понятно</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+var VER = 3;
+var CAO_BONUS = 200;
+var PAL = ["#e04a3c","#1e4fd8","#2c9a5e","#0d9aa0","#e0842a","#7a4dc4","#c9a227","#cf5f96"];
+var DEF_LOCS = [
+  {c:"Н", n:"Нижегородская", cao:false, col:PAL[0]},
+  {c:"Т", n:"Тушино",        cao:false, col:PAL[1]},
+  {c:"Щ", n:"Щукино",        cao:false, col:PAL[2]},
+  {c:"С", n:"Стрешнево",     cao:false, col:PAL[3]}
+];
+var DEF_TAR = { "М":[1800,2200,2400,2600,2800], "Г":[1400,1600,1800,2000,2400] };
+var TYPES = ["М","Г"];
+var TR = {"A":"А","B":"В","E":"Е","K":"К","M":"М","H":"Н","O":"О","P":"Р",
+          "C":"С","T":"Т","X":"Х","Y":"У","G":"Г","N":"Н","U":"У"};
+
+/* ---------- состояние ---------- */
+var mem = null;
+function load(){
+  if(mem) return mem;
+  try{ var raw = localStorage.getItem("uchet_v1"); if(raw) mem = JSON.parse(raw); }catch(e){}
+  if(!mem || typeof mem!=="object") mem = {};
+
+  var fresh = (mem.v !== VER);
+
+  if(!Array.isArray(mem.locs) || !mem.locs.length){
+    mem.locs = DEF_LOCS.map(function(l){ return {c:l.c,n:l.n,cao:l.cao,col:l.col}; });
+  }
+  mem.locs.forEach(function(l,i){
+    if(typeof l.cao!=="boolean") l.cao=false;
+    if(typeof l.col!=="string")  l.col=PAL[i%PAL.length];
+  });
+
+  if(!mem.tar || typeof mem.tar!=="object") mem.tar = {};
+  TYPES.forEach(function(t){ if(!Array.isArray(mem.tar[t])) mem.tar[t] = DEF_TAR[t].slice(); });
+  if(TYPES.indexOf(mem.def)<0) mem.def = "М";
+  if(!Array.isArray(mem.hist)) mem.hist = [];
+
+  if(fresh){ mem.bal = 0; mem.lim = 0; mem.v = VER; delete mem.cao; }
+  if(typeof mem.bal!=="number") mem.bal = 0;
+  if(typeof mem.lim!=="number") mem.lim = 0;
+  return mem;
+}
+function save(){ try{ localStorage.setItem("uchet_v1", JSON.stringify(mem)); }catch(e){} }
+
+/* ---------- мелочи ---------- */
+function $(id){ return document.getElementById(id); }
+function today(){
+  var d=new Date();
+  return String(d.getDate()).padStart(2,"0")+"."+String(d.getMonth()+1).padStart(2,"0");
+}
+function hhmm(ts){
+  var d=new Date(ts);
+  return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+}
+function norm(s){
+  s=String(s||"").toUpperCase().replace(/Ё/g,"Е");
+  var o=""; for(var i=0;i<s.length;i++) o+=(TR[s[i]]||s[i]);
+  return o;
+}
+function toast(t){
+  var el=$("toast"); el.textContent=t; el.classList.add("on");
+  clearTimeout(el._t); el._t=setTimeout(function(){ el.classList.remove("on"); },1700);
+}
+function showErr(t){
+  var e=$("err");
+  if(!t){ e.style.display="none"; e.textContent=""; return; }
+  e.textContent=t; e.style.display="block";
+}
+function tarLen(){ var s=load(); return Math.max(s.tar["М"].length, s.tar["Г"].length); }
+function tarGet(t,n1){
+  var v=(load().tar[t]||[])[n1-1];
+  return (typeof v==="number" && isFinite(v) && v>0) ? v : null;
+}
+function findLoc(code){
+  var st=load(), k=norm(code), i;
+  for(i=0;i<st.locs.length;i++) if(norm(st.locs[i].c)===k) return st.locs[i];
+  for(i=0;i<st.locs.length;i++) if(norm(st.locs[i].n)===k) return st.locs[i];
+  var p=[]; for(i=0;i<st.locs.length;i++) if(norm(st.locs[i].n).indexOf(k)===0) p.push(st.locs[i]);
+  return p.length===1 ? p[0] : null;
+}
+function freeColor(){
+  var st=load(), used={};
+  st.locs.forEach(function(l){ used[l.col]=1; });
+  for(var i=0;i<PAL.length;i++) if(!used[PAL[i]]) return PAL[i];
+  return PAL[st.locs.length % PAL.length];
+}
+
+/* ---------- разбор ---------- */
+function parseLine(raw){
+  var s=raw.trim().replace(/\s+/g," ");
+  if(!s) return null;
+  var m;
+
+  if(/^(не\s*)?цао$/i.test(s))
+    return {type:"bad", src:raw, why:"ЦАО теперь задаётся у локации — кнопка ЦАО в разделе «Локации»"};
+
+  m=s.match(/^бал(?:анс)?\s*[=:]?\s*(-?[\d\s.]+)$/i);
+  if(m) return {type:"setBal", v:parseInt(m[1].replace(/[\s.]/g,""),10)};
+
+  m=s.match(/^ост(?:аток)?\s*[=:]?\s*(-?\d+)$/i);
+  if(m) return {type:"setLim", v:parseInt(m[1],10)};
+
+  m=s.match(/^вывод\s*[=:]?\s*(-?[\d\s.]+)$/i);
+  if(m) return {type:"out", v:parseInt(m[1].replace(/[\s.]/g,""),10)};
+
+  m=s.match(/^мк\s*[=:]?\s*([+-]?\d+)$/i);
+  if(m) return {type:"mk", v:parseInt(m[1],10)};
+
+  m=s.match(/^([A-Za-zА-Яа-яЁё]+)\.?\s*(\d+)\s*[хxXХ*×]\s*(\d+)\s*([A-Za-zА-Яа-яЁё]{0,2})$/);
+  if(m){
+    var loc=findLoc(m[1]);
+    if(!loc) return {type:"bad", src:raw, why:"нет локации с кодом «"+m[1]+"» — добавьте её в разделе «Локации»"};
+    var t=m[4] ? norm(m[4]) : load().def;
+    if(TYPES.indexOf(t)<0) return {type:"bad", src:raw, why:"буква тарифа бывает только М или Г, а тут «"+m[4]+"»"};
+    var n1=parseInt(m[2],10), n2=parseInt(m[3],10);
+    var base=tarGet(t,n1);
+    if(base===null) return {type:"bad", src:raw, why:"для числа1 = "+n1+" нет множителя по тарифу "+t+" — впишите его в разделе «Тарифы»"};
+    return {type:"calc", loc:loc, n1:n1, n2:n2, t:t, base:base};
+  }
+  return {type:"bad", src:raw, why:"не похоже на команду. Пример: Н 2х3 М"};
+}
+
+/* ---------- расчёт ---------- */
+function process(text){
+  var st=load(), lines=text.split(/\n|;/);
+  var calcs=[], outs=[], mks=[], sets=[], bad=[];
+
+  lines.forEach(function(ln){
+    var p=parseLine(ln);
+    if(!p) return;
+    if(p.type==="calc") calcs.push(p);
+    else if(p.type==="out") outs.push(p.v);
+    else if(p.type==="mk") mks.push(p.v);
+    else if(p.type==="setBal"||p.type==="setLim") sets.push(p);
+    else bad.push("«"+p.src.trim()+"» — "+p.why);
+  });
+  if(bad.length) return {error:bad.join("\n")};
+  if(!calcs.length && !outs.length && !mks.length && !sets.length)
+    return {error:"Пусто. Напишите, например: Н 2х3 М"};
+
+  var prevBal=st.bal, prevLim=st.lim;
+  var accrual=0, deduct=0;
+  var outSum=outs.reduce(function(a,b){return a+b;},0);
+  var mkSum =mks.reduce(function(a,b){return a+b;},0);
+
+  var L=[today()];
+  var lastCao=null, anyCao=false;
+
+  calcs.forEach(function(c){
+    var bonus = c.loc.cao ? CAO_BONUS : 0;
+    if(c.loc.cao) anyCao=true;
+    if(c.loc.cao!==lastCao){ L.push(c.loc.cao?"Цао":"Не цао"); lastCao=c.loc.cao; }
+    var mult=c.base+bonus, sum=c.n2*mult;
+    accrual+=sum; deduct+=c.n1*c.n2;
+    L.push(c.loc.n);
+    L.push(c.n1+"х"+c.n2+" "+c.t+" = "+sum);
+  });
+  if(outs.length) L.push("Вывод");
+  if(mks.length)  L.push("МК");
+
+  var newBal=prevBal+accrual-outSum, newLim=prevLim-deduct+mkSum;
+  var balCh=(accrual!==0||outSum!==0), limCh=(deduct!==0||mkSum!==0);
+
+  if(balCh){
+    L.push("Баланс = "+prevBal);
+    if(accrual) L.push("+"+accrual);
+    if(outSum)  L.push("-"+outSum);
+    L.push("= "+newBal);
+  }
+  if(limCh){
+    L.push("Остаток = "+prevLim);
+    if(deduct) L.push("-"+deduct);
+    if(mkSum)  L.push((mkSum>0?"+":"")+mkSum);
+    L.push("= "+newLim);
+  }
+  if(balCh&&!limCh) L.push("(остаток не меняется)");
+  if(limCh&&!balCh) L.push("(баланс не меняется)");
+
+  st.bal=newBal; st.lim=newLim;
+
+  if(sets.length){
+    var sb=null, sl=null;
+    sets.forEach(function(s){ if(s.type==="setBal") sb=s.v; else sl=s.v; });
+    if(sb!==null) st.bal=sb;
+    if(sl!==null) st.lim=sl;
+    if(balCh||limCh) L.push("");
+    L.push("Баланс = "+st.bal);
+    L.push("Остаток = "+st.lim);
+  }
+
+  var report=L.join("\n");
+  st.hist.unshift({d:today(), ts:Date.now(), r:report, pb:prevBal, pl:prevLim,
+                   nb:st.bal, nl:st.lim, src:text.trim(), cao:anyCao});
+  if(st.hist.length>500) st.hist.pop();
+  save();
+  return {report:report};
+}
+
+/* ---------- отрисовка ---------- */
+function renderBoard(){
+  var st=load();
+  var a=$("vBal"), b=$("vLim");
+  a.textContent=st.bal.toLocaleString("ru-RU");
+  b.textContent=st.lim.toLocaleString("ru-RU");
+  a.className="b-v"+(st.bal<0?" neg":"");
+  b.className="b-v"+(st.lim<0?" neg":"");
+}
+
+function renderLines(){
+  var st=load(), box=$("lines");
+  box.innerHTML="";
+  if(!st.locs.length){
+    var d=document.createElement("div"); d.className="none";
+    d.textContent="Локаций пока нет — добавьте их в разделе «Локации» ниже.";
+    box.appendChild(d); return;
+  }
+  st.locs.forEach(function(l){
+    var b=document.createElement("button"); b.className="line"; b.type="button";
+    var dot=document.createElement("span"); dot.className="dot"; dot.style.background=l.col;
+    var cd=document.createElement("span"); cd.className="cd"; cd.textContent=l.c;
+    var nm=document.createElement("span"); nm.className="nm"; nm.textContent=l.n;
+    b.appendChild(dot); b.appendChild(cd); b.appendChild(nm);
+    if(l.cao){ var t=document.createElement("span"); t.className="tag"; t.textContent="ЦАО"; b.appendChild(t); }
+    b.onclick=function(){
+      var i=$("inp"), v=i.value;
+      if(v && !/\n$/.test(v)) v+="\n";
+      i.value=v+l.c+" "; i.focus();
+    };
+    box.appendChild(b);
+  });
+}
+
+function renderLocs(){
+  var st=load(), box=$("locList");
+  box.innerHTML="";
+  $("locCnt").textContent = st.locs.length + (st.locs.some(function(l){return l.cao;})
+      ? " · ЦАО: "+st.locs.filter(function(l){return l.cao;}).length : "");
+  st.locs.forEach(function(l, idx){
+    var row=document.createElement("div"); row.className="lr";
+
+    var sw=document.createElement("button"); sw.className="sw"; sw.type="button";
+    sw.style.background=l.col; sw.title="Цвет";
+    sw.onclick=function(){
+      var i=PAL.indexOf(l.col); l.col=PAL[(i+1)%PAL.length];
+      sw.style.background=l.col; save(); renderLines();
+    };
+
+    var ic=document.createElement("input"); ic.className="code"; ic.value=l.c; ic.maxLength=4;
+    ic.setAttribute("aria-label","Код");
+    ic.onchange=function(){
+      var v=ic.value.trim();
+      if(!v){ ic.value=l.c; return; }
+      if(!/^[A-Za-zА-Яа-яЁё]{1,4}$/.test(v)){ toast("Код — только буквы"); ic.value=l.c; return; }
+      if(st.locs.some(function(o,i){ return i!==idx && norm(o.c)===norm(v); })){
+        toast("Такой код уже занят"); ic.value=l.c; return;
+      }
+      l.c=v; save(); renderLines();
+    };
+
+    var inm=document.createElement("input"); inm.value=l.n; inm.setAttribute("aria-label","Название");
+    inm.onchange=function(){
+      var v=inm.value.trim();
+      if(!v){ inm.value=l.n; return; }
+      l.n=v; save(); renderLines();
+    };
+
+    var cao=document.createElement("button"); cao.type="button";
+    cao.className="cao"+(l.cao?" on":""); cao.textContent="ЦАО";
+    cao.title="Помечена как ЦАО: +"+CAO_BONUS+" к множителю";
+    cao.setAttribute("aria-pressed", l.cao?"true":"false");
+    cao.onclick=function(){
+      l.cao=!l.cao; save();
+      cao.className="cao"+(l.cao?" on":"");
+      cao.setAttribute("aria-pressed", l.cao?"true":"false");
+      renderLines(); renderLocs();
+    };
+
+    var rm=document.createElement("button"); rm.type="button"; rm.className="rm"; rm.textContent="✕";
+    rm.title="Удалить";
+    rm.onclick=function(){
+      if(!confirm("Удалить «"+l.n+"»? Прошлые отчёты останутся как есть.")) return;
+      st.locs.splice(idx,1); save(); renderLocs(); renderLines(); toast("Локация удалена");
+    };
+
+    row.appendChild(sw); row.appendChild(ic); row.appendChild(inm);
+    row.appendChild(cao); row.appendChild(rm);
+    box.appendChild(row);
+  });
+}
+
+function renderTar(){
+  var st=load(), tb=$("tarBody");
+  tb.innerHTML="";
+  var n=tarLen();
+  $("tarCnt").textContent="число1: 1–"+n;
+  for(var i=1;i<=n;i++){
+    (function(i){
+      var tr=document.createElement("tr");
+      var td0=document.createElement("td"); td0.className="n"; td0.textContent=i; tr.appendChild(td0);
+      TYPES.forEach(function(t){
+        var td=document.createElement("td");
+        var inp=document.createElement("input");
+        inp.type="number"; inp.inputMode="numeric"; inp.step="100"; inp.min="0"; inp.placeholder="—";
+        inp.setAttribute("aria-label","Тариф "+t+", число1 "+i);
+        var v=st.tar[t][i-1];
+        inp.value=(typeof v==="number"&&isFinite(v))?v:"";
+        inp.onchange=function(){
+          var x=parseInt(inp.value,10);
+          st.tar[t][i-1]=(isFinite(x)&&x>0)?x:null; save();
+        };
+        td.appendChild(inp); tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    })(i);
+  }
+  $("defSel").value=st.def;
+}
+
+function renderHist(){
+  var st=load(), box=$("hist");
+  box.innerHTML="";
+  $("histCnt").textContent = st.hist.length ? st.hist.length+" записей" : "пусто";
+  if(!st.hist.length){
+    var e=document.createElement("div"); e.className="empty";
+    e.textContent="Здесь появятся отчёты. Каждый можно раскрыть и скопировать.";
+    box.appendChild(e); return;
+  }
+  st.hist.forEach(function(h){
+    var d=document.createElement("div"); d.className="hitem";
+    var hh=document.createElement("div"); hh.className="hh";
+    var l=document.createElement("span");
+    l.textContent=h.d+" · "+hhmm(h.ts)+(h.cao?" · цао":"");
+    var r=document.createElement("span"); r.className="hv";
+    r.textContent=h.nb.toLocaleString("ru-RU")+" / "+h.nl;
+    hh.appendChild(l); hh.appendChild(r);
+    var pre=document.createElement("pre"); pre.textContent=h.r;
+    hh.onclick=function(){ d.classList.toggle("open"); };
+    d.appendChild(hh); d.appendChild(pre);
+    box.appendChild(d);
+  });
+}
+
+function renderAll(){ renderBoard(); renderLines(); renderLocs(); renderTar(); renderHist(); }
+
+/* ---------- события ---------- */
+$("btnCalc").onclick=function(){
+  showErr("");
+  var res=process($("inp").value);
+  if(res.error){ showErr(res.error); return; }
+  $("rep").textContent=res.report;
+  $("repTime").textContent=hhmm(Date.now());
+  $("repWrap").style.display="block";
+  $("inp").value="";
+  renderAll();
+  $("repWrap").scrollIntoView({behavior:"smooth", block:"nearest"});
+};
+$("btnClear").onclick=function(){ $("inp").value=""; showErr(""); $("inp").focus(); };
+
+$("btnCopy").onclick=function(){
+  var t=$("rep").textContent;
+  function fb(){
+    var ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); toast("Отчёт скопирован"); }catch(e){ toast("Скопировать не вышло"); }
+    document.body.removeChild(ta);
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText)
+    navigator.clipboard.writeText(t).then(function(){ toast("Отчёт скопирован"); }, fb);
+  else fb();
+};
+
+$("btnUndo").onclick=function(){
+  var st=load();
+  if(!st.hist.length){ toast("Отменять нечего"); return; }
+  var last=st.hist.shift();
+  st.bal=last.pb; st.lim=last.pl; save();
+  $("repWrap").style.display="none";
+  $("inp").value=last.src;
+  renderAll(); toast("Запись отменена");
+};
+
+$("btnAddLoc").onclick=function(){
+  var st=load();
+  var c=$("newC").value.trim(), n=$("newN").value.trim();
+  if(!c||!n){ toast("Нужны код и название"); return; }
+  if(!/^[A-Za-zА-Яа-яЁё]{1,4}$/.test(c)){ toast("Код — только буквы, до четырёх"); return; }
+  if(st.locs.some(function(o){ return norm(o.c)===norm(c); })){ toast("Такой код уже занят"); return; }
+  st.locs.push({c:c, n:n, cao:false, col:freeColor()}); save();
+  $("newC").value=""; $("newN").value="";
+  renderLocs(); renderLines(); toast("Локация добавлена");
+};
+
+$("btnTarAdd").onclick=function(){
+  var st=load(), n=tarLen();
+  TYPES.forEach(function(t){ while(st.tar[t].length<n) st.tar[t].push(null); st.tar[t].push(null); });
+  save(); renderTar();
+};
+$("btnTarDel").onclick=function(){
+  var st=load(); if(tarLen()<=1) return;
+  TYPES.forEach(function(t){ st.tar[t].pop(); }); save(); renderTar();
+};
+$("btnTarReset").onclick=function(){
+  if(!confirm("Вернуть тарифы к исходным значениям?")) return;
+  var st=load();
+  TYPES.forEach(function(t){ st.tar[t]=DEF_TAR[t].slice(); });
+  save(); renderTar(); toast("Тарифы сброшены");
+};
+$("defSel").onchange=function(){ var st=load(); st.def=this.value; save(); };
+
+$("btnCsv").onclick=function(){
+  var st=load();
+  var rows=[["Дата","Время","Ввод","Баланс до","Баланс после","Остаток до","Остаток после"]];
+  for(var i=st.hist.length-1;i>=0;i--){
+    var h=st.hist[i];
+    rows.push([h.d, hhmm(h.ts), (h.src||"").replace(/\n/g," | "), h.pb, h.nb, h.pl, h.nl]);
+  }
+  var csv="﻿"+rows.map(function(r){
+    return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(";");
+  }).join("\n");
+  var name="uchet_"+today().replace(".","-")+".csv";
+  // в андроид-приложении файл сохраняет сама программа, blob там не скачивается
+  if(window.AndroidBridge && window.AndroidBridge.saveCsv){
+    try{ window.AndroidBridge.saveCsv(name, csv); return; }catch(e){}
+  }
+  var url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  var a=document.createElement("a");
+  a.href=url; a.download=name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); },2000);
+};
+
+$("btnWipe").onclick=function(){
+  if(!confirm("Очистить историю? Баланс, остаток, локации и тарифы останутся.")) return;
+  var st=load(); st.hist=[]; save(); renderHist(); toast("История очищена");
+};
+
+/* окно справки */
+var lastFocus=null;
+function openHelp(){
+  lastFocus=document.activeElement;
+  $("modal").hidden=false;
+  document.body.style.overflow="hidden";
+  $("mSheet").focus();
+  try{ localStorage.setItem("uchet_seen","1"); }catch(e){}
+}
+function closeHelp(){
+  $("modal").hidden=true;
+  document.body.style.overflow="";
+  if(lastFocus && lastFocus.focus) lastFocus.focus();
+}
+$("btnHelp").onclick=openHelp;
+$("tipHelp").onclick=openHelp;
+$("mClose").onclick=closeHelp;
+$("mOk").onclick=closeHelp;
+$("modal").addEventListener("click", function(e){ if(e.target===this) closeHelp(); });
+document.addEventListener("keydown", function(e){
+  if(e.key==="Escape" && !$("modal").hidden) closeHelp();
+});
+
+$("btnTheme").onclick=function(){
+  var cur=document.documentElement.getAttribute("data-theme");
+  var dark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+  var next = cur ? (cur==="dark"?"light":"dark") : (dark?"light":"dark");
+  document.documentElement.setAttribute("data-theme", next);
+  try{ localStorage.setItem("uchet_theme", next); }catch(e){}
+};
+try{
+  var th=localStorage.getItem("uchet_theme");
+  if(th) document.documentElement.setAttribute("data-theme", th);
+}catch(e){}
+
+$("inp").addEventListener("keydown", function(e){
+  if((e.ctrlKey||e.metaKey)&&e.key==="Enter") $("btnCalc").click();
+});
+
+renderAll();
+try{ if(!localStorage.getItem("uchet_seen") && !load().hist.length) openHelp(); }catch(e){}
+})();
+</script>
+</body>
+</html>
