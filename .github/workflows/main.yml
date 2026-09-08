@@ -873,11 +873,7 @@ jobs:
           if [ -f index.html ]; then
             cp index.html app/src/main/assets/index.html
             echo "Взят index.html из корня репозитория."
-          else
-            echo "index.html в корне нет, используется версия из проекта."
           fi
-          echo "=== файлы проекта ==="
-          find . -path ./.git -prune -o -type f -print | sort
           for f in settings.gradle build.gradle app/build.gradle \
                    app/src/main/AndroidManifest.xml app/src/main/assets/index.html; do
             if [ ! -f "$f" ]; then echo "ОШИБКА: нет файла $f"; exit 1; fi
@@ -890,17 +886,40 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Поставить Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Доставить нужные части SDK
+        run: |
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" || true
+          echo "ANDROID_HOME = $ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" || true
+
       - name: Поставить Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
 
       - name: Собрать APK
-        run: gradle assembleDebug --no-daemon --stacktrace
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle assembleDebug --no-daemon --stacktrace 2>&1 | tee build.log
 
-      - name: Что собралось
+      - name: Последние строки лога
+        if: failure()
+        run: |
+          echo "================ КОНЕЦ ЛОГА ================"
+          tail -n 150 build.log || echo "лог не создан"
+
+      - name: Выложить лог сборки
         if: always()
-        run: find . -name '*.apk' -print || echo "APK не найден"
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-sborki
+          path: build.log
+          if-no-files-found: ignore
 
       - name: Выложить APK
         uses: actions/upload-artifact@v4
