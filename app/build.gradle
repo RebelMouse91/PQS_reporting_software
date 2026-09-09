@@ -2,6 +2,15 @@ plugins {
     id 'com.android.application'
 }
 
+// Постоянный ключ подписи приходит из GitHub Secrets. Без него сборка идёт со
+// стандартным debug-ключом, который на каждом прогоне CI новый — такой APK нельзя
+// установить поверх предыдущего, только удалив приложение вместе с его данными.
+def ksPath = System.getenv("PQS_KEYSTORE_FILE")
+def ksPass = System.getenv("PQS_KEYSTORE_PASSWORD")
+def ksAlias = System.getenv("PQS_KEY_ALIAS")
+def ksKeyPass = System.getenv("PQS_KEY_PASSWORD")
+def useStableSigning = ksPath && ksPass && ksAlias && ksKeyPass && file(ksPath).exists()
+
 android {
     namespace 'com.uchet.app'
     compileSdk 34
@@ -14,9 +23,28 @@ android {
         versionName "1.0"
     }
 
+    if (useStableSigning) {
+        signingConfigs {
+            stable {
+                storeFile file(ksPath)
+                storePassword ksPass
+                keyAlias ksAlias
+                keyPassword ksKeyPass
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            if (useStableSigning) {
+                signingConfig signingConfigs.stable
+            }
+        }
+        debug {
+            if (useStableSigning) {
+                signingConfig signingConfigs.stable
+            }
         }
     }
 
