@@ -1,4 +1,4 @@
-# Книга учёта — Android
+# PQS — Android
 
 Приложение целиком лежит в одном файле `app/src/main/assets/index.html`.
 Android-часть — это только оболочка вокруг него: окно WebView, кнопка «назад»
