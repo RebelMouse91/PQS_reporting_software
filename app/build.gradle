@@ -2,14 +2,24 @@ plugins {
     id 'com.android.application'
 }
 
-// Постоянный ключ подписи приходит из GitHub Secrets. Без него сборка идёт со
-// стандартным debug-ключом, который на каждом прогоне CI новый — такой APK нельзя
-// установить поверх предыдущего, только удалив приложение вместе с его данными.
-def ksPath = System.getenv("PQS_KEYSTORE_FILE")
-def ksPass = System.getenv("PQS_KEYSTORE_PASSWORD")
-def ksAlias = System.getenv("PQS_KEY_ALIAS")
-def ksKeyPass = System.getenv("PQS_KEY_PASSWORD")
-def useStableSigning = ksPath && ksPass && ksAlias && ksKeyPass && file(ksPath).exists()
+// Без постоянного ключа Gradle подписывает APK стандартным debug-ключом, который на
+// каждом прогоне CI новый — такой APK не встаёт поверх предыдущего, только с удалением
+// приложения и его данных. Ключ из signing/ используется по умолчанию; секреты
+// репозитория, если заданы все четыре, имеют приоритет.
+def envKsPath = System.getenv("PQS_KEYSTORE_FILE")
+def envKsPass = System.getenv("PQS_KEYSTORE_PASSWORD")
+def envKsAlias = System.getenv("PQS_KEY_ALIAS")
+def envKsKeyPass = System.getenv("PQS_KEY_PASSWORD")
+def useEnvKey = envKsPath && envKsPass && envKsAlias && envKsKeyPass && file(envKsPath).exists()
+
+def ksPath = useEnvKey ? envKsPath : rootProject.file("signing/pqs.keystore").path
+def ksPass = useEnvKey ? envKsPass : "pqsapp"
+def ksAlias = useEnvKey ? envKsAlias : "pqs"
+def ksKeyPass = useEnvKey ? envKsKeyPass : "pqsapp"
+def useStableSigning = file(ksPath).exists()
+
+// Номер сборки CI попадает в версию, чтобы установленную версию можно было отличить.
+def ciRun = System.getenv("GITHUB_RUN_NUMBER")
 
 android {
     namespace 'com.uchet.app'
@@ -19,8 +29,8 @@ android {
         applicationId "com.uchet.app"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode ciRun ? ciRun.toInteger() : 1
+        versionName ciRun ? "1.0.${ciRun}" : "1.0"
     }
 
     if (useStableSigning) {
