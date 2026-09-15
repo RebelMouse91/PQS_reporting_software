@@ -59,6 +59,14 @@ jobs:
           set -o pipefail
           gradle assembleDebug --no-daemon --stacktrace 2>&1 | tee build.log
 
+      - name: Проверить подпись APK
+        # Если ключ не подхватился, Gradle молча подпишет APK случайным debug-ключом
+        # и такой APK не встанет поверх установленного. Отпечаток в логе это ловит.
+        run: |
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner | sort | tail -n 1)
+          "$APKSIGNER" verify --print-certs app/build/outputs/apk/debug/app-debug.apk \
+            | grep -i "SHA-256 digest"
+
       - name: Последние строки лога
         if: failure()
         run: |
