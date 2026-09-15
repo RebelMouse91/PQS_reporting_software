@@ -54,6 +54,13 @@ android {
     }
 }
 
+configurations.all {
+    // старые kotlin-stdlib-jdk7/jdk8 (тянутся транзитивно некоторыми androidx-библиотеками)
+    // дублируют классы, которые с Kotlin 1.8 уже включены прямо в kotlin-stdlib
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+}
+
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
 }
