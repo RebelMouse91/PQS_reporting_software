@@ -429,6 +429,8 @@ window.onVaultEvent=function(ev){
     refresh();
   } else if(ev.type==="error"){
     toast(ev.message || "Ошибка");
+  } else if(ev.type==="originals-kept"){
+    toast("Фото спрятано, но осталось и в галерее — подтвердите удаление в системном окне");
   }
   // "cancelled" и "originals-cleared" отдельного действия не требуют
 };

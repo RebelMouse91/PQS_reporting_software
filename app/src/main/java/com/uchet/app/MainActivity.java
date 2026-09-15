@@ -275,10 +275,10 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 int ok = 0;
                 final List<Uri> toDelete = new ArrayList<>();
-                for (Uri u : uris) {
+                for (Uri picked : uris) {
                     File tmp = new File(getCacheDir(), newId() + "_pick.jpg");
                     boolean copied = false;
-                    try (InputStream in = getContentResolver().openInputStream(u);
+                    try (InputStream in = getContentResolver().openInputStream(picked);
                          FileOutputStream out = new FileOutputStream(tmp)) {
                         if (in == null) continue;
                         byte[] buf = new byte[8192];
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (Exception ignored) { }
                     if (copied && importFile(tmp)) {
                         ok++;
-                        toDelete.add(u);
+                        toDelete.add(resolveMediaUri(picked));
                     } else {
                         tmp.delete();
                     }
@@ -305,24 +305,53 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Системный выбор документа отдаёт ссылку на сам документ, а не обязательно
+     * на запись в MediaStore — для удаления оригинала нужна именно она.
+     */
+    private Uri resolveMediaUri(Uri documentUri) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                Uri media = MediaStore.getMediaUri(this, documentUri);
+                if (media != null) return media;
+            } catch (Exception ignored) { }
+        }
+        return documentUri;
+    }
+
     /** Убирает исходники из публичной галереи после того, как копия легла в тайник. */
     private void deleteOriginals(List<Uri> uris) {
         if (uris.isEmpty()) return;
+
+        // ссылки не из MediaStore (например, облачный источник) createDeleteRequest
+        // не принимает — для них пробуем обычное удаление по отдельности
+        List<Uri> mediaUris = new ArrayList<>();
+        for (Uri u : uris) {
+            if (MediaStore.AUTHORITY.equals(u.getAuthority())) {
+                mediaUris.add(u);
+            } else {
+                try { getContentResolver().delete(u, null, null); } catch (Exception ignored) { }
+            }
+        }
+        if (mediaUris.isEmpty()) return;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             try {
-                PendingIntent pi = MediaStore.createDeleteRequest(getContentResolver(), uris);
+                PendingIntent pi = MediaStore.createDeleteRequest(getContentResolver(), mediaUris);
                 startIntentSenderForResult(pi.getIntentSender(), REQ_DELETE_CONFIRM, null, 0, 0, 0, null);
-            } catch (Exception ignored) { }
+            } catch (Exception e) {
+                notifyJs("error", "Не удалось запросить удаление оригиналов из галереи");
+            }
             return;
         }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            pendingDeleteAfterPermission = uris;
+            pendingDeleteAfterPermission = mediaUris;
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQ_STORAGE_PERM);
             return;
         }
-        for (Uri u : uris) {
+        for (Uri u : mediaUris) {
             try { getContentResolver().delete(u, null, null); } catch (Exception ignored) { }
         }
     }
@@ -406,7 +435,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (requestCode == REQ_PICK_IMAGES) {
             handlePickedImages(resultCode, data);
         } else if (requestCode == REQ_DELETE_CONFIRM) {
-            notifyJs("originals-cleared", null);
+            notifyJs(resultCode == RESULT_OK ? "originals-cleared" : "originals-kept", null);
         }
     }
 
@@ -486,11 +515,16 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    // ACTION_OPEN_DOCUMENT (а не ACTION_GET_CONTENT) — начиная с Android 13
+                    // GET_CONTENT для картинок система подменяет приватным Фотопикером,
+                    // а его ссылки на фото нельзя передать в MediaStore.createDeleteRequest,
+                    // поэтому оригинал из галереи не удалялся.
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("image/*");
                     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                     try {
-                        startActivityForResult(Intent.createChooser(intent, "Выберите фото"), REQ_PICK_IMAGES);
+                        startActivityForResult(intent, REQ_PICK_IMAGES);
                     } catch (Exception e) {
                         notifyJs("error", "Нет приложения для выбора фото");
                     }
