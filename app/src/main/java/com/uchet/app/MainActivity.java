@@ -570,5 +570,20 @@ public class MainActivity extends AppCompatActivity {
             try { res.put("restored", restored); } catch (Exception ignored) { }
             return res.toString();
         }
+
+        /** Сменить комбинацию входа. Доступно только изнутри уже открытого тайника. */
+        @JavascriptInterface
+        public void changeGate() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i = new Intent(MainActivity.this, GateActivity.class);
+                    i.putExtra(GateActivity.EXTRA_RESET, true);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                    finish();
+                }
+            });
+        }
     }
 }
