@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Монограмма Q. Та же геометрия, что и в знаке PQS: кольцо внешним
+  диаметром 300 с разрывом слева вверху и хвост под 45 градусов.
+  Толщина штриха 54 — 0.18 от диаметра, как в исходной иконке.
+
+  Группа переносит знак (226..526, 70..370) в безопасную зону
+  адаптивной иконки: 58 единиц из 108, отступ 25 со всех сторон.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:scaleX="0.1933333"
+        android:scaleY="0.1933333"
+        android:translateX="-18.6933"
+        android:translateY="11.4667">
+
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="54"
+            android:strokeLineCap="butt"
+            android:pathData="M333.9,104.4 A123,123 0 1 1 260.4,177.9" />
+
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="54"
+            android:strokeLineCap="butt"
+            android:pathData="M425.5,269.5 L506.9,350.9" />
+    </group>
+</vector>

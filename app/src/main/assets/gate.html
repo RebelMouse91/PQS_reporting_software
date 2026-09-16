@@ -36,8 +36,8 @@ body::before{
 #intro.gone{opacity:0; pointer-events:none; transition:opacity .5s ease}
 .mark{width:min(72vw,340px); height:auto; overflow:visible}
 .mark path{
-  fill:none; stroke:var(--tx); stroke-width:96;
-  stroke-linecap:round; stroke-linejoin:round;
+  fill:none; stroke:var(--tx); stroke-width:54;
+  stroke-linecap:butt; stroke-linejoin:round;
 }
 .mark .draw{stroke-dasharray:var(--len); stroke-dashoffset:var(--len); animation:draw .75s ease forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
@@ -109,12 +109,12 @@ body::before{
 <body>
 
 <div id="intro">
-  <svg class="mark" viewBox="0 0 891 440" aria-label="PQS">
-    <path class="draw" style="--len:210" d="M48,118 L48,322"/>
-    <path class="draw" style="--len:330" d="M48,118 L130,118 A47,47 0 0 1 130,212 L48,212"/>
-    <path class="draw" style="--len:570" d="M400.1,124.2 A102,102 0 1 1 339.2,185.1"/>
-    <path class="draw" style="--len:110" d="M465,250 L537,322"/>
-    <path class="draw" style="--len:450" d="M843,169 A75,51 0 1 0 768,220 A75,51 0 1 1 693,271"/>
+  <svg class="mark" viewBox="0 0 752 430" aria-label="PQS">
+    <path class="draw" style="--len:300" d="M27,70 L27,370"/>
+    <path class="draw" style="--len:330" d="M27,97 L101,97 A58,58 0 0 1 101,213 L27,213"/>
+    <path class="draw" style="--len:670" d="M333.9,104.4 A123,123 0 1 1 260.4,177.9"/>
+    <path class="draw" style="--len:120" d="M425.5,269.5 L506.9,350.9"/>
+    <path class="draw" style="--len:610" d="M725,158.5 A66,61.5 0 1 0 659,220 A66,61.5 0 1 1 593,281.5"/>
   </svg>
   <div id="rule"></div>
   <div id="sub">EX CTS</div>
