@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>PQS</title>
+<style>
+/* ---------- палитра: тёмная, самый светлый тон не белее #d9dce3 ---------- */
+:root{
+  --ink:#05060a; --bg:#0c0d11; --panel:#14161c; --panel2:#1d2027;
+  --edge:#39404e; --tx:#d9dce3; --tx2:#a2a7b4; --tx3:#767b88;
+  --acc:#8098ff; --acc2:#4fbe92;
+  --halftone:rgba(217,220,227,.05);
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--tx);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; user-select:none; -webkit-user-select:none;
+  padding:env(safe-area-inset-top,0) 16px env(safe-area-inset-bottom,0);
+}
+/* полутон — комиксовая растровая подложка */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:radial-gradient(var(--halftone) 1.5px, transparent 1.6px);
+  background-size:9px 9px;
+}
+
+/* ---------- интро ---------- */
+#intro{
+  position:fixed; inset:0; z-index:5; background:var(--bg);
+  display:flex; align-items:center; justify-content:center; flex-direction:column;
+}
+#intro.gone{opacity:0; pointer-events:none; transition:opacity .5s ease}
+.mark{width:min(72vw,340px); height:auto; overflow:visible}
+.mark path{
+  fill:none; stroke:var(--tx); stroke-width:96;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.mark .draw{stroke-dasharray:var(--len); stroke-dashoffset:var(--len); animation:draw .75s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+#rule{
+  width:min(72vw,340px); height:5px; background:var(--tx); margin-top:14px;
+  transform:scaleX(0); transform-origin:left center;
+  animation:rule .45s ease .95s forwards;
+}
+@keyframes rule{to{transform:scaleX(1)}}
+#sub{
+  margin-top:10px; width:min(72vw,340px);
+  font-size:15px; font-weight:700; letter-spacing:.42em; color:var(--tx2);
+  opacity:0; animation:fade .5s ease 1.25s forwards;
+}
+@keyframes fade{to{opacity:1}}
+
+/* ---------- игра ---------- */
+#game{opacity:0; transform:translateY(10px); position:relative; z-index:1; width:100%; max-width:380px}
+#game.on{opacity:1; transform:none; transition:opacity .45s ease,transform .45s ease}
+
+.title{
+  text-align:center; font-size:13px; font-weight:800;
+  letter-spacing:.3em; color:var(--tx3); text-transform:uppercase; margin:0 0 14px;
+}
+.frame{
+  border:3px solid var(--edge); border-radius:6px; background:var(--panel);
+  box-shadow:6px 6px 0 var(--ink); padding:10px; transform:rotate(-.5deg);
+}
+.board{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+.cell{
+  aspect-ratio:1/1; border:3px solid var(--edge); border-radius:4px;
+  background:var(--panel2); box-shadow:3px 3px 0 var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; padding:0; transition:transform .1s ease, background .15s ease;
+}
+.cell:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink)}
+.cell[disabled]{cursor:default}
+.cell svg{width:58%; height:58%; overflow:visible}
+.cell svg *{
+  fill:none; stroke-width:13; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:var(--l); stroke-dashoffset:var(--l); animation:draw .22s ease forwards;
+}
+.x *{stroke:var(--acc)}
+.o *{stroke:var(--tx2)}
+.cell.hit{background:#232838}
+
+.hint{
+  margin-top:16px; text-align:center; font-size:13px; line-height:1.5;
+  color:var(--tx3); min-height:40px; padding:0 4px;
+}
+.hint b{color:var(--tx2); font-weight:700}
+.dots{display:flex; gap:7px; justify-content:center; margin-top:12px; height:11px}
+.dot{width:11px; height:11px; border:2px solid var(--edge); border-radius:50%; background:transparent}
+.dot.f{background:var(--acc); border-color:var(--acc)}
+.dot.h{background:var(--acc2); border-color:var(--acc2)}
+.act{
+  display:block; margin:16px auto 0; padding:11px 20px; font:inherit;
+  font-size:14px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--tx); background:var(--panel2); border:3px solid var(--edge);
+  border-radius:5px; box-shadow:4px 4px 0 var(--ink); cursor:pointer;
+}
+.act:active{transform:translate(2px,2px); box-shadow:2px 2px 0 var(--ink)}
+.act[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){
+  .mark .draw,#rule,#sub,.cell svg *{animation-duration:.01ms; animation-delay:0s}
+}
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <svg class="mark" viewBox="0 0 891 440" aria-label="PQS">
+    <path class="draw" style="--len:210" d="M48,118 L48,322"/>
+    <path class="draw" style="--len:330" d="M48,118 L130,118 A47,47 0 0 1 130,212 L48,212"/>
+    <path class="draw" style="--len:570" d="M400.1,124.2 A102,102 0 1 1 339.2,185.1"/>
+    <path class="draw" style="--len:110" d="M465,250 L537,322"/>
+    <path class="draw" style="--len:450" d="M843,169 A75,51 0 1 0 768,220 A75,51 0 1 1 693,271"/>
+  </svg>
+  <div id="rule"></div>
+  <div id="sub">EX CTS</div>
+</div>
+
+<div id="game">
+  <p class="title" id="ttl">крестики-нолики</p>
+  <div class="frame"><div class="board" id="b"></div></div>
+  <div class="dots" id="dots"></div>
+  <p class="hint" id="hint"></p>
+  <button class="act" id="act" hidden></button>
+</div>
+
+<script>
+"use strict";
+
+/* Мост в Java. Если его нет (открыли в обычном браузере) — работаем вхолостую,
+   чтобы страницу можно было посмотреть без сборки APK. */
+var B = (typeof Gate !== "undefined") ? Gate : {
+  hasSecret:function(){return false},
+  setSecret:function(){},
+  check:function(){return false},
+  unlock:function(){document.title="UNLOCKED"}
+};
+
+var LINES=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+var HOLD_MS=600;      // удержание, отличающее «пароль» от обычного тапа
+var MIN_LEN=4;        // минимум ходов в комбинации
+
+var board, mine, mode, draft, over, busy;
+
+/* ---------- детерминированный соперник ----------
+   Никакой случайности: иначе сохранённая комбинация может стать
+   невоспроизводимой — соперник займёт нужную игроку клетку. */
+function lineMove(p){
+  for(var i=0;i<LINES.length;i++){
+    var L=LINES[i], own=0, free=-1;
+    for(var j=0;j<3;j++){
+      if(board[L[j]]===p) own++;
+      else if(board[L[j]]==="") free=L[j];
+    }
+    if(own===2 && free>=0) return free;
+  }
+  return -1;
+}
+function ai(){
+  // Соперник только защищается и не достраивает свою линию. Если дать ему
+  // выигрывать, 47% партий кончаются на третьем ходу игрока — комбинацию
+  // тогда трудно и задать, и пространство вариантов падает вдвое.
+  var m=lineMove("X"); if(m>=0) return m;      // заблокировать
+  if(board[4]==="") return 4;                  // центр
+  var order=[0,2,6,8,1,3,5,7];
+  for(var i=0;i<order.length;i++) if(board[order[i]]==="") return order[i];
+  return -1;
+}
+function winner(){
+  for(var i=0;i<LINES.length;i++){
+    var L=LINES[i], a=board[L[0]];
+    if(a && a===board[L[1]] && a===board[L[2]]) return {p:a,line:L};
+  }
+  return board.indexOf("")<0 ? {p:"-",line:[]} : null;
+}
+
+/* ---------- отрисовка ---------- */
+var GX='<svg class="x" viewBox="0 0 100 100"><path style="--l:113" d="M18,18 L82,82"/><path style="--l:113" d="M82,18 L18,82"/></svg>';
+var GO='<svg class="o" viewBox="0 0 100 100"><circle style="--l:220" cx="50" cy="50" r="33"/></svg>';
+
+function build(){
+  var h="";
+  for(var i=0;i<9;i++) h+='<button class="cell" data-i="'+i+'"></button>';
+  document.getElementById("b").innerHTML=h;
+  var cells=document.querySelectorAll(".cell");
+  for(var k=0;k<cells.length;k++) arm(cells[k]);
+}
+function paint(){
+  var cells=document.querySelectorAll(".cell");
+  for(var i=0;i<9;i++){
+    var c=cells[i];
+    var want = board[i]==="X" ? GX : board[i]==="O" ? GO : "";
+    if(c.getAttribute("data-v")!==board[i]){
+      c.innerHTML=want; c.setAttribute("data-v",board[i]);
+    }
+    c.disabled = board[i]!=="" || over || busy;
+  }
+  var d="";
+  for(var j=0;j<mine.length;j++) d+='<span class="dot '+(mine[j].hold?"h":"f")+'"></span>';
+  document.getElementById("dots").innerHTML=d;
+}
+function say(t){document.getElementById("hint").innerHTML=t;}
+
+/* ---------- обработка нажатия с распознаванием удержания ---------- */
+function arm(c){
+  var t0=0, touched=false;
+  function down(){ t0=Date.now(); c.classList.add("hit"); }
+  function up(e){
+    c.classList.remove("hit");
+    if(t0===0) return;
+    var held=(Date.now()-t0)>=HOLD_MS;
+    t0=0;
+    if(e) e.preventDefault();
+    play(+c.getAttribute("data-i"), held);
+  }
+  function cancel(){ c.classList.remove("hit"); t0=0; }
+
+  // После touchend Android досылает синтетические mousedown/mouseup.
+  // Без этого флага один тап засчитывался бы как два хода.
+  c.addEventListener("touchstart",function(){ touched=true; down(); },{passive:true});
+  c.addEventListener("touchend",up);
+  c.addEventListener("touchcancel",cancel);
+  c.addEventListener("mousedown",function(){ if(!touched) down(); });
+  c.addEventListener("mouseup",function(e){ if(!touched) up(e); });
+  c.addEventListener("mouseleave",cancel);
+  c.addEventListener("contextmenu",function(e){e.preventDefault();});
+}
+
+/* ---------- ход игрока ---------- */
+function play(i,held){
+  if(over||busy||board[i]!=="") return;
+  board[i]="X";
+  mine.push({i:i,hold:held});
+  paint();
+
+  if(mode==="unlock"){
+    if(B.check(encode(mine))){ win(); return; }
+  }
+
+  var w=winner();
+  if(w){ finish(w); return; }
+
+  busy=true; paint();
+  setTimeout(function(){
+    var m=ai();
+    if(m>=0) board[m]="O";
+    busy=false;
+    var w2=winner();
+    paint();
+    if(w2) finish(w2); else tick();
+  },260);
+}
+
+function encode(list){
+  var s=[];
+  for(var i=0;i<list.length;i++) s.push(list[i].i+(list[i].hold?"h":""));
+  return s.join(",");
+}
+
+/* ---------- сообщения по режимам ---------- */
+function tick(){
+  if(mode==="unlock"){ say(""); return; }
+  if(mode==="set1"){
+    if(mine.length<MIN_LEN) say("Запоминаю ходы. Нужно минимум <b>"+MIN_LEN+"</b>.");
+    else say("Ходов: <b>"+mine.length+"</b>. Хотя бы один задержите нажатием.");
+  }
+  if(mode==="set2") say("Повторите ту же комбинацию.");
+}
+
+function finish(w){
+  over=true; paint();
+  if(mode==="unlock"){
+    document.getElementById("act").hidden=false;
+    document.getElementById("act").textContent="ещё раз";
+    say(w.p==="X"?"Вы выиграли.":w.p==="O"?"Вы проиграли.":"Ничья.");
+    return;
+  }
+  if(mode==="set1"){
+    var holds=0;
+    for(var i=0;i<mine.length;i++) if(mine[i].hold) holds++;
+    if(mine.length<MIN_LEN){
+      restart("set1","Партия кончилась за <b>"+mine.length+"</b> хода. Нужно минимум <b>"+MIN_LEN+"</b> — играйте так, чтобы не выиграть и не проиграть слишком быстро.");
+      return;
+    }
+    if(holds<1){
+      restart("set1","Хотя бы один ход нужно сделать <b>с задержкой</b> — нажать и подержать секунду. Без этого комбинацию можно набрать случайно.");
+      return;
+    }
+    draft=encode(mine);
+    restart("set2","Комбинация записана. Теперь <b>повторите её</b> — те же клетки, в том же порядке, с той же задержкой.");
+    return;
+  }
+  if(mode==="set2"){
+    if(encode(mine)===draft){
+      B.setSecret(draft);
+      document.getElementById("ttl").textContent="готово";
+      say("Комбинация сохранена. Дальше эта игра — ваш вход.<br>Никто со стороны не отличит её от обычной партии.");
+      document.getElementById("act").hidden=false;
+      document.getElementById("act").textContent="войти";
+      document.getElementById("act").onclick=function(){B.unlock();};
+      return;
+    }
+    draft=null;
+    restart("set1","Не совпало. Задаём заново.");
+  }
+}
+
+function win(){
+  over=true; busy=true; paint();
+  document.body.style.transition="opacity .35s ease";
+  document.body.style.opacity="0";
+  setTimeout(function(){B.unlock();},350);
+}
+
+function restart(next,msg){
+  setTimeout(function(){
+    mode=next; board=["","","","","","","","",""]; mine=[]; over=false; busy=false;
+    var cells=document.querySelectorAll(".cell");
+    for(var i=0;i<9;i++) cells[i].removeAttribute("data-v");
+    paint(); say(msg||""); tick();
+  }, 900);
+}
+
+/* ---------- запуск ---------- */
+function start(){
+  board=["","","","","","","","",""]; mine=[]; over=false; busy=false; draft=null;
+  build(); paint();
+  var has=false;
+  try{ has=!!B.hasSecret(); }catch(e){}
+  var act=document.getElementById("act");
+  if(has){
+    mode="unlock";
+    document.getElementById("ttl").textContent="крестики-нолики";
+    say("");
+    act.onclick=function(){restart("unlock","");act.hidden=true;};
+  }else{
+    mode="set1";
+    document.getElementById("ttl").textContent="задайте комбинацию";
+    say("Сыграйте партию. Ваши ходы станут ключом от тайника.<br>Хотя бы один ход сделайте <b>с задержкой</b> — нажмите и подержите.");
+    act.hidden=true;
+  }
+  tick();
+}
+
+var shown=false;
+function showGame(){
+  if(shown) return; shown=true;
+  document.getElementById("intro").classList.add("gone");
+  document.getElementById("game").classList.add("on");
+}
+document.getElementById("intro").addEventListener("click",showGame);
+setTimeout(showGame,2100);
+start();
+</script>
+</body>
+</html>

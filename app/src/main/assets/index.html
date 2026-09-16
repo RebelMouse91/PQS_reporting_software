@@ -2,200 +2,279 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f1520">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="PQS">
-<meta name="format-detection" content="telephone=no">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
-<link rel="icon" href="data:image/png;base64,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">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0c0d11">
 <title>PQS</title>
 <style>
-/* ---------- токены ---------- */
+/* ================= токены =================
+   Тёмная тема — основная. Самый светлый тон #d9dce3: чистый белый
+   на тёмном фоне слишком контрастен и режет глаза. */
 :root{
-  --bg:#eceff4; --panel:#ffffff; --panel2:#f3f6fa; --line:#dde3ec;
-  --tx:#111721; --tx2:#5c6879; --tx3:#8c97a7;
-  --acc:#1e4fd8; --acc-tx:#ffffff; --acc-soft:rgba(30,79,216,.10);
-  --bad:#c33427; --bad-soft:rgba(195,52,39,.10);
-  --shadow:0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.18);
+  --ink:#05060a; --bg:#0c0d11; --panel:#14161c; --panel2:#1d2027; --sunk:#101216;
+  --edge:#39404e; --edge2:#2b303b;
+  --tx:#d9dce3; --tx2:#a2a7b4; --tx3:#767b88;
+  --acc:#8098ff; --acc-tx:#0a0d13;
+  --bad:#e0776a; --ok:#4fbe92;
+  --halftone:rgba(217,220,227,.05);
+  --shadow:5px 5px 0 var(--ink);
+  --shadow-sm:3px 3px 0 var(--ink);
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0a0d13; --panel:#131923; --panel2:#1a2130; --line:#26303f;
-    --tx:#e8edf5; --tx2:#95a2b5; --tx3:#6e7c90;
-    --acc:#5b86ff; --acc-tx:#0a0d13; --acc-soft:rgba(91,134,255,.14);
-    --bad:#ff6f62; --bad-soft:rgba(255,111,98,.13);
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0a0d13; --panel:#131923; --panel2:#1a2130; --line:#26303f;
-  --tx:#e8edf5; --tx2:#95a2b5; --tx3:#6e7c90;
-  --acc:#5b86ff; --acc-tx:#0a0d13; --acc-soft:rgba(91,134,255,.14);
-  --bad:#ff6f62; --bad-soft:rgba(255,111,98,.13);
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+:root[data-theme="light"]{
+  --ink:#b8bcc6; --bg:#e9ebef; --panel:#f3f4f6; --panel2:#e0e3e9; --sunk:#dcdfe6;
+  --edge:#5b606c; --edge2:#a2a7b4;
+  --tx:#14161c; --tx2:#4a505c; --tx3:#767b88;
+  --acc:#2743d4; --acc-tx:#ffffff;
+  --bad:#b23a2e; --ok:#1c7a55;
+  --halftone:rgba(20,22,28,.06);
 }
 
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%; text-size-adjust:100%}
-html,body{margin:0; overflow-x:hidden}
+html,body{height:100%}
 body{
-  background:var(--bg); color:var(--tx);
-  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  padding:env(safe-area-inset-top) 0 0;
+  margin:0; background:var(--bg); color:var(--tx);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:15px; line-height:1.45;
+  -webkit-user-select:none; user-select:none;
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);
 }
-button{touch-action:manipulation}
-.wrap{max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:14px;
-  padding:16px max(14px,env(safe-area-inset-left)) calc(40px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-right))}
+/* полутоновая растровая подложка — базовый приём комикса */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:radial-gradient(var(--halftone) 1.5px, transparent 1.6px);
+  background-size:9px 9px;
+}
+.wrap{position:relative; z-index:1; max-width:760px; margin:0 auto; padding:14px 16px 96px}
 
-/* ---------- шапка ---------- */
-.top{display:flex; align-items:flex-end; justify-content:space-between; gap:12px}
-.brand{display:flex; align-items:center; gap:10px}
-.mark{width:34px; height:34px; border-radius:9px; background:var(--acc); color:var(--acc-tx);
-  display:grid; place-items:center; font-weight:800; font-size:11.5px; letter-spacing:-.5px; flex:none}
-h1{font-size:17px; margin:0; font-weight:700; letter-spacing:-.2px}
-.brand .cap{font-size:11.5px; color:var(--tx3); letter-spacing:.3px; line-height:1.35}
-@media (max-width:359px){ .brand .cap{display:none} }
-.iconbtn{width:42px; height:42px; padding:0; display:grid; place-items:center; font-size:17px; flex:none;
-  background:var(--panel); border:1px solid var(--line); border-radius:11px; color:var(--tx2); cursor:pointer}
+/* ================= общие комикс-примитивы ================= */
+.panel{
+  border:3px solid var(--edge); border-radius:6px;
+  background:var(--panel); box-shadow:var(--shadow);
+}
+button{font:inherit; color:inherit}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:9px;
+  padding:13px 16px; border:3px solid var(--edge); border-radius:6px;
+  background:var(--panel2); color:var(--tx); box-shadow:var(--shadow);
+  font-weight:800; font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+  cursor:pointer; transition:transform .08s ease, box-shadow .08s ease;
+}
+.btn:active{transform:translate(3px,3px); box-shadow:0 0 0 var(--ink)}
+.btn.primary{background:var(--acc); color:var(--acc-tx); border-color:var(--acc)}
+.btn.danger{background:var(--bad); color:var(--ink); border-color:var(--bad)}
+.ico{width:20px; height:20px; flex:none}
+.ico path,.ico circle,.ico rect{
+  fill:none; stroke:currentColor; stroke-width:8;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.iconbtn{
+  width:42px; height:42px; flex:none; display:flex; align-items:center; justify-content:center;
+  border:3px solid var(--edge); border-radius:6px; background:var(--panel2);
+  box-shadow:var(--shadow-sm); cursor:pointer;
+  transition:transform .08s ease, box-shadow .08s ease;
+}
+.iconbtn:active{transform:translate(2px,2px); box-shadow:0 0 0 var(--ink)}
+.iconbtn svg{width:19px; height:19px}
 
-/* ---------- кнопки ---------- */
-button{font:inherit; color:var(--tx); background:var(--panel2); border:1px solid var(--line);
-  border-radius:11px; padding:12px 14px; min-height:46px; cursor:pointer}
-button:active{transform:scale(.98)}
-.bar{display:flex; gap:8px}
-.bar>*{flex:1 1 0}
-.go{background:var(--acc); border-color:var(--acc); color:var(--acc-tx); font-weight:650; min-height:56px; font-size:15.5px}
-.go .ico{font-size:19px; display:block; margin-bottom:2px}
-.danger{color:var(--bad)}
+/* ================= шапка ================= */
+.top{display:flex; align-items:center; gap:12px; margin-bottom:16px}
+.brand{display:flex; align-items:center; gap:11px; min-width:0; flex:1}
+.badge{
+  width:46px; height:46px; flex:none; border:3px solid var(--edge); border-radius:8px;
+  background:var(--panel); box-shadow:var(--shadow-sm);
+  display:flex; align-items:center; justify-content:center; transform:rotate(-2deg);
+}
+.badge svg{width:26px; height:26px; overflow:visible}
+.badge path{fill:none; stroke:var(--tx); stroke-width:96; stroke-linecap:round}
+.brand h1{
+  margin:0; font-size:21px; font-weight:900; letter-spacing:.16em; line-height:1.1;
+}
+.brand .cap{
+  font-size:10px; font-weight:700; letter-spacing:.3em; color:var(--tx3);
+  text-transform:uppercase; margin-top:2px;
+}
 
-/* ---------- сетка фото ---------- */
-.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(102px,1fr)); gap:6px}
-.cell{position:relative; aspect-ratio:1; border-radius:12px; overflow:hidden; background:var(--panel2);
-  border:1px solid var(--line); cursor:pointer; user-select:none}
-.cell img{width:100%; height:100%; object-fit:cover; display:block; pointer-events:none}
-.cell .chk{position:absolute; top:6px; right:6px; width:22px; height:22px; border-radius:50%;
-  border:2px solid rgba(255,255,255,.85); background:rgba(10,13,19,.25)}
-.cell.sel{outline:3px solid var(--acc); outline-offset:-3px}
+/* ================= панель действий ================= */
+.bar{display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-bottom:18px}
+.bar .btn{padding:15px 10px; font-size:13px}
+
+/* ================= пусто ================= */
+.empty{
+  border:3px dashed var(--edge2); border-radius:8px; background:var(--sunk);
+  padding:26px 20px; text-align:center; color:var(--tx2); font-size:14px;
+}
+.empty .big{
+  display:block; font-size:16px; font-weight:900; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--tx); margin-bottom:9px;
+}
+
+/* ================= сетка ================= */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(108px,1fr)); gap:11px}
+.cell{
+  position:relative; aspect-ratio:1/1; overflow:hidden;
+  border:3px solid var(--edge); border-radius:6px; background:var(--sunk);
+  box-shadow:var(--shadow-sm); cursor:pointer;
+  transition:transform .08s ease, box-shadow .08s ease;
+}
+.cell:nth-child(3n){transform:rotate(.5deg)}
+.cell:nth-child(4n){transform:rotate(-.6deg)}
+.cell:active{transform:translate(2px,2px) rotate(0); box-shadow:0 0 0 var(--ink)}
+.cell img{width:100%; height:100%; object-fit:cover; display:block}
+.cell.sel{border-color:var(--acc)}
+.cell.sel::after{
+  content:""; position:absolute; inset:0; background:var(--acc); opacity:.22;
+}
+.chk{
+  position:absolute; top:7px; right:7px; width:23px; height:23px; z-index:2;
+  border:3px solid var(--edge); border-radius:5px; background:var(--panel);
+}
 .cell.sel .chk{background:var(--acc); border-color:var(--acc)}
-.cell.sel .chk::after{content:"✓"; color:var(--acc-tx); font-size:13px; font-weight:800;
-  display:flex; align-items:center; justify-content:center; height:100%}
-
-.empty{text-align:center; color:var(--tx3); font-size:13.5px; padding:34px 14px; line-height:1.7}
-
-/* ---------- панель выбора ---------- */
-.selbar{position:sticky; bottom:calc(10px + env(safe-area-inset-bottom)); z-index:15;
-  display:flex; align-items:center; gap:8px; background:var(--panel); border:1px solid var(--line);
-  border-radius:14px; padding:9px 10px; box-shadow:var(--shadow)}
-.selbar[hidden]{display:none}
-.selbar .cnt{font-size:13px; color:var(--tx2); padding:0 4px; flex:1 1 auto; white-space:nowrap}
-.selbar button{min-height:40px; padding:9px 12px; font-size:13.5px}
-
-/* ---------- окно справки ---------- */
-.modal{position:fixed; inset:0; z-index:40; display:flex; align-items:flex-end; justify-content:center;
-  background:rgba(8,12,20,.55); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px)}
-.modal[hidden]{display:none}
-.sheet{background:var(--panel); width:100%; max-width:560px; max-height:90dvh; max-height:90vh;
-  border-radius:18px 18px 0 0; display:flex; flex-direction:column; overflow:hidden;
-  box-shadow:0 -8px 40px rgba(0,0,0,.35); animation:up .22s ease-out}
-.sheet:focus{outline:none}
-@keyframes up{from{transform:translateY(22px); opacity:.6} to{transform:none; opacity:1}}
-@media (min-width:620px){
-  .modal{align-items:center}
-  .sheet{border-radius:18px; max-height:86vh}
+.cell.sel .chk::after{
+  content:""; position:absolute; left:5px; top:1px; width:6px; height:11px;
+  border:solid var(--acc-tx); border-width:0 3px 3px 0; transform:rotate(43deg);
 }
-.sheet-h{display:flex; align-items:center; justify-content:space-between; gap:10px;
-  padding:14px 14px 12px; border-bottom:1px solid var(--line); flex:none}
-.sheet-h>div{font-size:16px; font-weight:700}
-.sheet-b{overflow-y:auto; -webkit-overflow-scrolling:touch; padding:4px 16px 16px;
-  font-size:15px; line-height:1.6; color:var(--tx2)}
-.sheet-b h3{font-size:13.5px; color:var(--tx); font-weight:700; margin:20px 0 8px}
-.sheet-b h3:first-child{margin-top:8px}
-.sheet-b p{margin:8px 0}
-.sheet-b b{color:var(--tx); font-weight:650}
-.sheet-f{padding:12px 14px calc(14px + env(safe-area-inset-bottom)); border-top:1px solid var(--line); flex:none}
-.sheet-f .go{width:100%; min-height:50px}
 
-/* ---------- просмотр фото ---------- */
-.viewer{position:fixed; inset:0; z-index:50; background:#05070b; display:flex; flex-direction:column}
-.viewer[hidden]{display:none}
-.v-top{display:flex; align-items:center; justify-content:space-between; gap:10px;
-  padding:calc(10px + env(safe-area-inset-top)) 10px 10px}
-.v-top .iconbtn{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.12); color:#eaf0fa}
-.v-body{flex:1; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden}
-.v-body img{max-width:100%; max-height:100%; object-fit:contain}
-.v-nav{position:absolute; top:0; bottom:0; width:38%; display:flex; align-items:center; border:0;
-  background:transparent; color:rgba(255,255,255,.55); font-size:26px; min-height:0; border-radius:0}
-.v-nav:active{transform:none; background:rgba(255,255,255,.05)}
-.v-nav.prev{left:0; justify-content:flex-start; padding-left:6px}
-.v-nav.next{right:0; justify-content:flex-end; padding-right:6px}
-.v-bar{display:flex; gap:8px; padding:10px max(10px,env(safe-area-inset-left)) calc(14px + env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-right))}
-.v-bar button{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.14); color:#eaf0fa; min-height:48px}
-.v-bar .danger{color:#ff8a7d}
+/* ================= нижняя панель выбора ================= */
+.selbar{
+  position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom,0));
+  z-index:40; display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  padding:11px; border:3px solid var(--edge); border-radius:8px;
+  background:var(--panel); box-shadow:var(--shadow);
+}
+.selbar[hidden]{display:none!important}
+.cnt{
+  flex:1; min-width:86px; font-size:12px; font-weight:900;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--tx2);
+}
+.selbar .btn{padding:10px 13px; font-size:12px; box-shadow:var(--shadow-sm)}
 
-.toast{position:fixed; left:50%; bottom:calc(22px + env(safe-area-inset-bottom)); transform:translateX(-50%) translateY(18px);
-  max-width:calc(100vw - 32px); text-align:center;
-  background:var(--tx); color:var(--bg); padding:10px 17px; border-radius:22px; font-size:14px;
-  opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:60; box-shadow:var(--shadow)}
-.toast.on{opacity:1; transform:translateX(-50%) translateY(0)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+/* ================= просмотр ================= */
+.viewer{position:fixed; inset:0; z-index:60; background:var(--bg); display:flex; flex-direction:column}
+.viewer[hidden]{display:none!important}
+.v-top{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:calc(12px + env(safe-area-inset-top,0)) 14px 12px;
+}
+.v-body{flex:1; min-height:0; position:relative; display:flex; align-items:center; justify-content:center; padding:0 8px}
+.v-body img{max-width:100%; max-height:100%; object-fit:contain; border:3px solid var(--edge); border-radius:6px; background:var(--sunk)}
+.v-nav{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  width:44px; height:64px; display:flex; align-items:center; justify-content:center;
+  border:3px solid var(--edge); border-radius:6px; background:var(--panel);
+  box-shadow:var(--shadow-sm); cursor:pointer;
+}
+.v-nav.prev{left:10px} .v-nav.next{right:10px}
+.v-nav svg{width:18px; height:18px}
+.v-bar{display:flex; gap:11px; justify-content:center; padding:14px 14px calc(16px + env(safe-area-inset-bottom,0))}
+
+/* ================= справка ================= */
+.modal{position:fixed; inset:0; z-index:80; background:rgba(5,6,10,.82); display:flex; align-items:flex-end}
+.modal[hidden]{display:none!important}
+.sheet{
+  width:100%; max-height:88vh; display:flex; flex-direction:column;
+  border:3px solid var(--edge); border-radius:12px 12px 0 0;
+  background:var(--panel); box-shadow:0 -6px 0 var(--ink);
+}
+.sheet-h{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:15px 16px; border-bottom:3px solid var(--edge2);
+  font-size:14px; font-weight:900; letter-spacing:.16em; text-transform:uppercase;
+}
+.sheet-b{overflow:auto; padding:6px 16px 4px; -webkit-overflow-scrolling:touch; user-select:text; -webkit-user-select:text}
+.sheet-b h3{
+  margin:18px 0 6px; font-size:12px; font-weight:900; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--acc);
+}
+.sheet-b p{margin:0 0 4px; font-size:14px; color:var(--tx2)}
+.sheet-b b{color:var(--tx)}
+.sheet-f{padding:14px 16px calc(16px + env(safe-area-inset-bottom,0)); border-top:3px solid var(--edge2); display:flex; gap:10px}
+.sheet-f .btn{flex:1}
+
+/* ================= всплывающая подсказка ================= */
+.toast{
+  position:fixed; left:50%; bottom:86px; transform:translate(-50%,14px);
+  z-index:90; max-width:88vw; padding:11px 16px;
+  border:3px solid var(--edge); border-radius:6px; background:var(--panel2);
+  box-shadow:var(--shadow); font-size:13px; font-weight:700;
+  opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
+
 <div class="wrap">
 
   <div class="top">
     <div class="brand">
-      <div class="mark">PQS</div>
+      <div class="badge">
+        <!-- монограмма Q: та же геометрия, что и в полном логотипе -->
+        <svg viewBox="275 60 320 320" aria-hidden="true">
+          <path d="M400.1,124.2 A102,102 0 1 1 339.2,185.1"/>
+          <path d="M465,250 L537,322"/>
+        </svg>
+      </div>
       <div>
         <h1>PQS</h1>
-        <div class="cap">офлайн · фото хранятся только в приложении</div>
+        <div class="cap">EX CTS</div>
       </div>
     </div>
-    <div style="display:flex; gap:8px">
-      <button class="iconbtn" id="btnHelp" title="Справка" aria-label="Открыть справку">?</button>
-      <button class="iconbtn" id="btnTheme" title="Тема" aria-label="Сменить тему">◐</button>
-    </div>
+    <button class="iconbtn" id="btnTheme" title="Тема" aria-label="Сменить тему">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50,12 A38,38 0 1 1 50,88 Z" style="fill:currentColor;stroke:currentColor"/><circle cx="50" cy="50" r="38" style="stroke:currentColor"/></svg>
+    </button>
+    <button class="iconbtn" id="btnHelp" title="Справка" aria-label="Открыть справку">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M33,36 A17,17 0 1 1 50,53 L50,64"/><circle cx="50" cy="82" r="1.5" style="fill:currentColor;stroke-width:11"/></svg>
+    </button>
   </div>
 
   <div class="bar">
-    <button class="go" id="btnCamera"><span class="ico">📷</span>Снять фото</button>
-    <button class="go" id="btnImport" style="background:var(--panel2); border-color:var(--line); color:var(--tx)"><span class="ico">🖼</span>Спрятать из галереи</button>
+    <button class="btn primary" id="btnCamera">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="24" width="84" height="62" rx="9"/><path d="M34,24 L41,11 L59,11 L66,24"/><circle cx="50" cy="55" r="18"/></svg>
+      Снять фото
+    </button>
+    <button class="btn" id="btnImport">
+      <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="18" width="84" height="64" rx="9"/><path d="M8,66 L31,45 L54,66"/><path d="M52,64 L68,50 L92,72"/><circle cx="68" cy="34" r="8"/></svg>
+      Спрятать из галереи
+    </button>
   </div>
 
   <div id="empty" class="empty">
-    Пока нет спрятанных фото.<br>
-    Нажмите «Спрятать из галереи», чтобы убрать сюда уже снятые фото —
-    они исчезнут из галереи. Или «Снять фото»: новый снимок сразу
-    останется только здесь.
+    <span class="big">тайник пуст</span>
+    «Спрятать из галереи» — убрать сюда уже снятые фото, из галереи они исчезнут.
+    «Снять фото» — новый снимок сразу останется только здесь.
   </div>
 
   <div id="grid" class="grid" style="display:none"></div>
 
   <div class="selbar" id="selbar" hidden>
     <span class="cnt" id="selCount"></span>
-    <button id="btnSelRestore">В галерею</button>
-    <button class="danger" id="btnSelDelete">Удалить</button>
-    <button id="btnSelCancel">Отмена</button>
+    <button class="btn" id="btnSelRestore">В галерею</button>
+    <button class="btn danger" id="btnSelDelete">Удалить</button>
+    <button class="btn" id="btnSelCancel">Отмена</button>
   </div>
 
 </div>
 
 <div class="viewer" id="viewer" hidden>
   <div class="v-top">
-    <button class="iconbtn" id="vClose" aria-label="Закрыть">✕</button>
+    <button class="iconbtn" id="vClose" aria-label="Закрыть">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M22,22 L78,78"/><path d="M78,22 L22,78"/></svg>
+    </button>
     <span></span>
   </div>
   <div class="v-body">
-    <button class="v-nav prev" id="vPrev" aria-label="Предыдущее">‹</button>
+    <button class="v-nav prev" id="vPrev" aria-label="Предыдущее">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M64,16 L30,50 L64,84"/></svg>
+    </button>
     <img id="viewerImg" alt="Фото">
-    <button class="v-nav next" id="vNext" aria-label="Следующее">›</button>
+    <button class="v-nav next" id="vNext" aria-label="Следующее">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M36,16 L70,50 L36,84"/></svg>
+    </button>
   </div>
   <div class="v-bar">
-    <button id="vRestore">↩ В галерею</button>
-    <button class="danger" id="vDelete">✕ Удалить</button>
+    <button class="btn" id="vRestore">В галерею</button>
+    <button class="btn danger" id="vDelete">Удалить</button>
   </div>
 </div>
 
@@ -203,10 +282,19 @@ button:active{transform:scale(.98)}
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1" id="mSheet">
     <div class="sheet-h">
       <div id="mTitle">Как пользоваться</div>
-      <button class="iconbtn" id="mClose" aria-label="Закрыть">✕</button>
+      <button class="iconbtn" id="mClose" aria-label="Закрыть">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M22,22 L78,78"/><path d="M78,22 L22,78"/></svg>
+      </button>
     </div>
 
     <div class="sheet-b">
+      <h3>Вход в приложение</h3>
+      <p>Приложение открывается партией в крестики-нолики. Со стороны это
+      обычная игра, но ваша последовательность ходов — <b>ключ от тайника</b>.
+      Хотя бы один ход в комбинации делается <b>с задержкой</b>: нажать и подержать.
+      Случайно набрать такую комбинацию нельзя — обычные быстрые тапы
+      не срабатывают никогда.</p>
+
       <h3>Спрятать фото из галереи</h3>
       <p>Кнопка <b>«Спрятать из галереи»</b> открывает системный выбор фото.
       Выбранные снимки копируются в собственное хранилище приложения и
@@ -214,8 +302,8 @@ button:active{transform:scale(.98)}
 
       <h3>Снять фото</h3>
       <p>Кнопка <b>«Снять фото»</b> открывает камеру телефона. Готовый снимок
-      сохраняется сразу в тайник приложения в полном качестве и вообще
-      не попадает в публичную галерею.</p>
+      сохраняется сразу в тайник в полном качестве и вообще не попадает
+      в публичную галерею.</p>
 
       <h3>Просмотр</h3>
       <p>Нажмите на превью, чтобы открыть фото на весь экран. Стрелками по
@@ -226,8 +314,8 @@ button:active{transform:scale(.98)}
       несколько фото и сразу удалить их или вернуть в галерею.</p>
 
       <h3>Вернуть в галерею</h3>
-      <p>Кнопка <b>«В галерею»</b> (в просмотре или при выборе нескольких)
-      копирует фото обратно в публичную галерею и убирает его из тайника.</p>
+      <p>Кнопка <b>«В галерею»</b> копирует фото обратно в публичную галерею
+      и убирает его из тайника.</p>
 
       <h3>Удаление</h3>
       <p>Кнопка <b>«Удалить»</b> стирает фото из тайника без возможности
@@ -238,7 +326,10 @@ button:active{transform:scale(.98)}
       Удаление приложения удалит и спрятанные фото вместе с ним.</p>
     </div>
 
-    <div class="sheet-f"><button class="go" id="mOk">Понятно</button></div>
+    <div class="sheet-f">
+      <button class="btn" id="mGate">Сменить комбинацию</button>
+      <button class="btn primary" id="mOk">Понятно</button>
+    </div>
   </div>
 </div>
 
@@ -263,19 +354,22 @@ function toast(t){
 }
 function selCount(){ return Object.keys(selected).length; }
 
-/* ---------- тема ---------- */
+/* ---------- тема ----------
+   По умолчанию тёмная: приложение открывают в том числе в темноте,
+   и светлый фон во весь экран бьёт по глазам. */
 function applyTheme(t){
   if(t==="light") document.documentElement.setAttribute("data-theme","light");
-  else if(t==="dark") document.documentElement.setAttribute("data-theme","dark");
   else document.documentElement.removeAttribute("data-theme");
+  var m=document.querySelector('meta[name="theme-color"]');
+  if(m) m.setAttribute("content", t==="light" ? "#e9ebef" : "#0c0d11");
 }
 (function(){
-  var t=""; try{ t=localStorage.getItem("pqs_theme")||""; }catch(e){}
+  var t="dark"; try{ t=localStorage.getItem("pqs_theme")||"dark"; }catch(e){}
   applyTheme(t);
 })();
 $("btnTheme").onclick=function(){
-  var cur=""; try{ cur=localStorage.getItem("pqs_theme")||""; }catch(e){}
-  var next = cur==="" ? "dark" : (cur==="dark" ? "light" : "");
+  var cur="dark"; try{ cur=localStorage.getItem("pqs_theme")||"dark"; }catch(e){}
+  var next = cur==="dark" ? "light" : "dark";
   try{ localStorage.setItem("pqs_theme", next); }catch(e){}
   applyTheme(next);
 };
@@ -287,6 +381,11 @@ $("btnHelp").onclick=openModal;
 $("mClose").onclick=closeModal;
 $("mOk").onclick=closeModal;
 $("modal").addEventListener("click", function(e){ if(e.target.id==="modal") closeModal(); });
+$("mGate").onclick=function(){
+  if(!bridge || !bridge.changeGate){ toast("Доступно только в приложении на телефоне"); return; }
+  if(!confirm("Задать новую комбинацию входа? Старая перестанет действовать.")) return;
+  bridge.changeGate();
+};
 
 /* ---------- список / сетка ---------- */
 function refresh(){
